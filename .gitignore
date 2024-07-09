@@ -1,0 +1,25 @@
+# Ignore everything
+*
+# except...
+!.gitignore
+
+# Starship shell config
+!starship.toml
+
+# Hyprland config
+!hypr
+!hypr/*
+
+# Neovim
+!nvim
+
+# Plugin configs
+!nvim/
+!nvim/after/
+!nvim/after/plugin/
+!nvim/after/plugin/*
+
+# Base config & Packer
+!nvim/lua/
+!nvim/lua/my_conf/
+!nvim/lua/my_conf/*
