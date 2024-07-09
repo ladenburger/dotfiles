@@ -1,13 +1,10 @@
-
-* {
-    font-family: "Fira Sans Semibold";
-    border: none;
+* { font-family: "FiraCode Nerd Font"; border: none;
     border-radius: 0px;
     font-size: 14px;
 }
 
 window#waybar {
-    background-color: rgba(27, 27, 28, 0.95); 
+background-color: rgba(27, 27, 28, 0.85); 
     transition-property: background-color;
     transition-duration: .2s;
 }
@@ -23,14 +20,16 @@ window#waybar {
 }
 
 #workspaces button {
-    margin: 0;
+    margin: 0 5px;
     border: 0;
+    min-width: 8px;
     transition: all 0.15s ease-in-out;
 }
 
 #workspaces button.active {
-    color: rgb(27, 27, 28);
-    background: rgb(244, 244, 244);
+    color: #eb6f92;
+    min-width: 30px;
+    background-color: #191724;
     border-radius: 7px;
     transition: all 0.15s ease-in-out;
 }
@@ -43,23 +42,37 @@ window#waybar.empty #window {
     background-color:transparent;
 }
 
+#custom-logo {
+    color: #1793d1;
+    font-size: 23px;
+    margin: 1px;
+    padding: 0 6px;
+}
 
 #custom-settings, 
-#custom-system,
 #pulseaudio,
-#battery,
 #clock,
 #network,
+#language,
 #custom-wlogout {
-    margin: 0 15px 0 8px;
+    margin: 5px;
+    padding: 3px 10px;
+    border-radius: 7px;
+    background-color: #191724;
+}
+
+#custom-settings {
+    padding-right: 3px;
+}
+
+#custom-wlogout {
+    font-size: 15px;
+    color: #eb6f92;
+    border-radius: 10px;
+    padding-right: 13px ;
 }
 
 #clock {
-    color: rgb(27, 27, 28);
-    background: rgb(244, 244, 244);
-    margin: 5px;
-    padding: 3px 6px;
-    border-radius: 7px;
     font-weight: bold;
 }
 

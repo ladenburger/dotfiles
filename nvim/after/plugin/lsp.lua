@@ -19,7 +19,7 @@
         'pylsp',
         'cssls',
         'html',
-        'ltex',
+--         'ltex',
     },
     handlers = {
       lsp_zero.default_setup,

@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 	use({ "rose-pine/neovim", as = "rose-pine" })
+    use { "xiyaowong/transparent.nvim" }
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
@@ -26,7 +27,7 @@ return require("packer").startup(function(use)
 	use("theprimeagen/harpoon")
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
-	use("feline-nvim/feline.nvim")
+	-- use("feline-nvim/feline.nvim")
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",

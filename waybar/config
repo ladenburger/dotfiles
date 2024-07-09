@@ -8,7 +8,7 @@
     "include": ["~/.config/waybar/modules.json"],
 
     "modules-left": [
-        "custom/settings",
+        "custom/logo",
         "hyprland/window",
     ],
 
@@ -17,11 +17,11 @@
     "modules-right": [
         "hyprland/workspaces",
         "hyprland/language",
-        "keyboard",
         "pulseaudio",
         "network",
-        "custom/wlogout",
         "clock",
+        "custom/settings",
+        "custom/wlogout",
     ]
 }
 

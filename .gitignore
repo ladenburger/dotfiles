@@ -27,3 +27,7 @@
 # wlogout
 !wlogout/
 !wlogout/*
+
+# waybar
+!waybar/
+!waybar/*
