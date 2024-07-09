@@ -13,14 +13,12 @@
     -- with the ones you want to install
     ensure_installed = {
         'quick_lint_js',
-	    'tsserver', 
-	    'rust_analyzer',
-	    'angularls',
+        'tsserver', 
+        'rust_analyzer',
+        'angularls',
         'pylsp',
         'cssls',
         'html',
-        'sqlls',
-        'omnisharp_mono',
         'ltex',
     },
     handlers = {
