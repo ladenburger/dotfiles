@@ -15,11 +15,6 @@
         'quick_lint_js',
         'tsserver', 
         'rust_analyzer',
-        'angularls',
-        'pylsp',
-        'cssls',
-        'html',
---         'ltex',
     },
     handlers = {
       lsp_zero.default_setup,
