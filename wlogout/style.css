@@ -1,6 +1,6 @@
 * {
-	background-image: none;
-	box-shadow: none;
+    background-image: none;
+    box-shadow: none;
 }
 
 window {
@@ -9,20 +9,20 @@ window {
 
 button {
     margin: 50px;
-	text-decoration-color: #FFFFFF;
+    text-decoration-color: #FFFFFF;
     color: #ffffff;
     border: solid white 1px;
     border-radius: 20px;
 
-	background-color: rgba(25, 23, 36, 0.5);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 25%;
+    background-color: rgba(25, 23, 36, 0.5);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
 }
 
 button:focus, button:active, button:hover {
-	background-color: rgba(25, 23, 36, 0.8);
-	outline-style: none;
+    background-color: rgba(25, 23, 36, 0.8);
+    outline-style: none;
 }
 
 #lock {
