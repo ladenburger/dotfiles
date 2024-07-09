@@ -1,0 +1,10 @@
+alias ll='ls -l'
+alias la='ls -a'
+alias lal='ls -al'
+
+alias v=nvim
+alias sv='sudo nvim'
+alias vim=nvim
+
+alias btw=fastfetch
+alias neofetch=fastfetch

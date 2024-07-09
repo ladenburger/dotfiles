@@ -15,33 +15,38 @@
     },
 
     "custom/logo": {
-        "format": " 󰣇 ",
+        "format": "  󰣇  ",
         "tooltip": false
     },
 
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
     "custom/wlogout": {
-        "format": "  ",
+        "format": "    ",
         "on-click": "wlogout",
         "tooltip": false
     },
 
     "clock": {
-        "format": "󰥔 {:%H:%M}",
+        "format": "{:%H:%M}",
         "on-click": "",
         "tooltip-format": "  {:%Y-%m-%d}"
     },
 
     "hyprland/language": {
-        "format": "  {short}",
+        "format": "   {short}",
         "on-click": "hyprctl switchxkblayout logitech-usb-receiver-keyboard next"
     },
     
 
     "network": {
-        "format": "{ifname}",
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "󰩠 {ipaddr}",
-        "format-disconnected": "Not connected", 
+        "format": "{ifname}  ",
+        "format-wifi": "  {signalStrength}%  ",
+        "format-ethernet": "󰩠 {ifname}  ",
+        "format-disconnected": "Not connected  ", 
         "tooltip-format": "󱂇 {ifname} via {gwaddri}",
         "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
@@ -52,12 +57,12 @@
 
     "pulseaudio": {
         "format": "{icon}{volume}%",
-        "format-muted": "",
+        "format-muted": "  ",
         "format-source": "{volume}%",
         "format-icons": {
-            "headphone": "",
-            "headset": "",
-            "default": ["", " ", " "]
+            "headphone": " ",
+            "headset": " ",
+            "default": ["  ", "   ", "   "]
         },
         "on-click": "pavucontrol"
     },

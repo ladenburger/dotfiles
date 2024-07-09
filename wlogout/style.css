@@ -4,7 +4,7 @@
 }
 
 window {
-    background-image: url("/home/tux/.config/hypr/wallpapers/wallpaper_blur.png");
+    background-color: rgba(24, 24, 24, 0.9);
 }
 
 button {
