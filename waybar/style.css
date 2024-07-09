@@ -1,0 +1,68 @@
+
+* {
+    font-family: "Fira Sans Semibold";
+    border: none;
+    border-radius: 0px;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: rgba(27, 27, 28, 0.95); 
+    transition-property: background-color;
+    transition-duration: .2s;
+}
+
+#workspaces {
+    padding: 3px;
+    margin-right: 40px;
+    border-radius: 4px;
+    border: 0px;
+    font-weight: bold;
+    font-style: normal;
+    transition: all 0.15s ease-in-out;
+}
+
+#workspaces button {
+    margin: 0;
+    border: 0;
+    transition: all 0.15s ease-in-out;
+}
+
+#workspaces button.active {
+    color: rgb(27, 27, 28);
+    background: rgb(244, 244, 244);
+    border-radius: 7px;
+    transition: all 0.15s ease-in-out;
+}
+
+#window {
+    font-weight:normal;
+}
+
+window#waybar.empty #window {
+    background-color:transparent;
+}
+
+
+#custom-settings, 
+#custom-system,
+#pulseaudio,
+#battery,
+#clock,
+#network,
+#custom-wlogout {
+    margin: 0 15px 0 8px;
+}
+
+#clock {
+    color: rgb(27, 27, 28);
+    background: rgb(244, 244, 244);
+    margin: 5px;
+    padding: 3px 6px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+ #language {
+    padding: 0 15px;
+}

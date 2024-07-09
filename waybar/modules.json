@@ -1,0 +1,94 @@
+{
+    "hyprland/workspaces" : {
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "persistent-workspaces": {
+             "*": 5
+        }       
+    },
+
+    "custom/settings": {
+        "format": "  ",
+        "on-click": "alacritty -e nvim ~/.config/hypr/",
+        "tooltip": false
+    },
+
+    "custom/wlogout": {
+        "format": "  ",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "󰥔   {:%H:%M}",
+        "on-click": "",
+        "tooltip-format": "  {:%Y-%m-%d}"
+    },
+
+    "hyprland/language": {
+        "format": "    {short}",
+        "on-click": "hyprctl switchxkblayout logitech-usb-receiver-keyboard next"
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-memory",
+            "transition-left-to-right": false
+        },        
+        "modules": [
+            "custom/system",
+            "disk",
+            "cpu",
+            "memory",
+        ]
+    },
+    
+    "group/settings": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-memory",
+            "transition-left-to-right": false
+        },        
+        "modules": [
+            "custom/settings",
+            "custom/waybarthemes",
+            "custom/wallpaper"
+        ]
+    },
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "   {signalStrength}%",
+        "format-ethernet": "󰩠  {ipaddr}",
+        "format-disconnected": "Not connected", 
+        "tooltip-format": "󱂇  {ifname} via {gwaddri}",
+        "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50,
+        "on-click": "nm-connection-editor"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}   {volume}%",
+        "format-muted": "  ",
+        "format-source": "{volume}%",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "bluetooth": {
+        "format-disabled": "",
+        "format-off": "",
+        "interval": 30,
+        "on-click": "blueman-manager"
+    },
+}
+
