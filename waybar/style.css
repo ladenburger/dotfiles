@@ -11,14 +11,18 @@ window#waybar {
 #workspaces button {
     background-color: #21202e;
     padding: 1px 8px;
-    color: #575279;
+    border-radius: 20px;
+    color: rgba(0,0,0,0);
+    margin: 2px 4px;
 }
 
 #workspaces button.active {
-    background-color: #191724;
-    border-radius: 2px;
+    background-color: #e0def4;
     transition-duration: .2s;
-    color: #c4a7e7;
+    font-size: 7px;
+    padding: 1px 28px;
+    color: #191724;
+    font-weight: bold;
 }
 
 #custom-logo {
