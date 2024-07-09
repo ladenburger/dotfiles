@@ -39,3 +39,7 @@ else
     eval "$(dircolors -b)"
 fi
 alias ls='ls --color=auto'
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
