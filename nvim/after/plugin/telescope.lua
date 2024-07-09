@@ -4,6 +4,7 @@ require('telescope').setup{
        "node_modules",
        "target",
        "dist",
+       "venv",
        "package%-lock.json"
    },
  }
