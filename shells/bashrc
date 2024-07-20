@@ -19,7 +19,8 @@ fi
 ### Some env vars ###
 #####################
 
-export LEDGER_FILE=$HOME/Documents/.hledger.journal     # HLedger
+export EDITOR=/usr/bin/nvim                             # Default editor
+export LEDGER_FILE=$HOME/Documents/hledger.journal      # HLedger
 export STARSHIP_CONFIG=~/.config/starship/starship.toml # starship prompt
 
 
