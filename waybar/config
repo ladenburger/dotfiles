@@ -20,7 +20,6 @@
         "tray",
         "hyprland/language",
         "pulseaudio",
-        "network",
         "bluetooth",
         "custom/settings",
         "clock",
