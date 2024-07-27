@@ -2,6 +2,8 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lal='ls -al'
 
+alias ..='cd ..'
+
 alias v=nvim
 alias sv='sudo nvim'
 alias vim=nvim
