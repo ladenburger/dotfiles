@@ -9,7 +9,7 @@
     },
 
     "custom/settings": {
-        "format": "   ",
+        "format": "  ",
         "on-click": "alacritty -e nvim ~/.config/hypr/",
         "tooltip": false
     },
