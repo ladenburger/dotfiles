@@ -1,17 +1,17 @@
 * { 
     font-family: "Helvetica"; 
-    font-size: 14px;
+    font-size: 12px;
     color: #9893a5;
 }
 
 window#waybar {
-    background-color: rgba(27, 27, 28, 0.85); 
+    background-color: rgba(27, 27, 28, 0.35); 
 }
 
 #workspaces button {
     background-color: #21202e;
-    padding: 1px 8px;
-    border-radius: 20px;
+    padding: 0px 3px;
+    border-radius: 10px;
     color: rgba(0,0,0,0);
     margin: 2px;
 }
@@ -19,13 +19,12 @@ window#waybar {
 #workspaces button.active {
     background-color: #e0def4;
     transition-duration: .2s;
-    font-size: 7px;
     color: #191724;
     font-weight: bold;
 }
 
 #custom-logo {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 #custom-settings, 
@@ -39,5 +38,5 @@ window#waybar {
 }
 
 #clock {
-    font-size: 16px;
+    font-size: 14px;
 }
