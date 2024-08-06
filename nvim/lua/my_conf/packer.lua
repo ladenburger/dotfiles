@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 	use({ "rose-pine/neovim", as = "rose-pine" })
+    use { "ellisonleao/gruvbox.nvim" }
 	use({ "xiyaowong/transparent.nvim" })
 	use({
 		"nvim-treesitter/nvim-treesitter",

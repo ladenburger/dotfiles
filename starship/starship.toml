@@ -16,27 +16,33 @@ $docker_context\
 $line_break$character\
 $os\
 $username\
-[ in ](bold fg:color_muted)\
+[ in ](bold fg:color_bg3)\
 $directory\
-[ 󰏰 ](fg:color_rose)\
+[ 󰏰 ](fg:color_purple)\
 """
 
-palette = 'rose-pine'
+palette = 'gruvbox_dark'
 
-[palettes.rose-pine]
-color_muted = '#6e6a86'
-color_foam = '#9ccfd8'
-color_iris = '#c4a7e7'
-color_rose = '#ea9a97'
-color_love = '#eb6f92'
+[palettes.gruvbox_dark]
+color_fg0 = '#fbf1c7'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_blue = '#458588'
+color_aqua = '#689d6a'
+color_green = '#98971a'
+color_orange = '#d65d0e'
+color_purple = '#b16286'
+color_red = '#cc241d'
+color_yellow = '#d79921'
+
 
 [username]
 show_always = true
-format = '[ $user](fg:color_foam)'
+format = '[ $user](fg:color_fg0)'
 
 [directory]
 style = ""
-format = "[$path](fg:color_iris)"
+format = "[$path](fg:color_orange)"
 read_only = " 󰌾 "
 truncation_length = 3
 truncation_symbol = "…/"
@@ -50,7 +56,7 @@ truncation_symbol = "…/"
 
 [character]
 success_symbol = '[ ](bold)'
-error_symbol = '[](bold fg:color_love)'
+error_symbol = '[](bold fg:color_red)'
 vimcmd_symbol = '[](bold green)'
 
 [aws]
