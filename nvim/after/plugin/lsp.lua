@@ -12,9 +12,9 @@
     -- Replace the language servers listed here 
     -- with the ones you want to install
     ensure_installed = {
-        'quick_lint_js',
-        'tsserver', 
+        'clangd'
         'rust_analyzer',
+        'eslint',
     },
     handlers = {
       lsp_zero.default_setup,
