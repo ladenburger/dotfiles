@@ -1,27 +1,24 @@
 [window]
-opacity = 0.85
+opacity = 0.80
 
 [window.padding]
 x = 10
 y = 10
 
 [font]
-size = 12
+size = 14
 
 [font.normal]
-family = 'FiraCode Nerd Font'
+family = 'Zed Mono Extended'
 style  = "Normal"
 
 [font.bold]
-family = 'FiraCode Nerd Font'
+family = 'Zed Mono Extended'
 style  = "Bold"
 
 [font.italic]
-family = 'FiraCode Nerd Font'
+family = 'Zed Mono Extended'
 style  = "Italic"
-
-[font.bold_italic]
-family = 'FiraCode Nerd Font'
 
 [colors.cursor]
 text   = "#282828"
