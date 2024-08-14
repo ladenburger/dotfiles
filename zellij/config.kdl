@@ -1,0 +1,14 @@
+keybinds {
+    normal {
+        unbind "Ctrl n"
+        unbind "Ctrl p"
+        unbind "Ctrl i"
+        unbind "Ctrl o"
+
+        bind   "Ctrl r" { SwitchToMode "resize"; }
+        bind   "Ctrl y" { SwitchToMode "pane"; }
+        bind   "Ctrl s" { SwitchToMode "session"; }
+    }
+}
+
+theme "gruvbox-dark"
