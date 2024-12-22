@@ -10,7 +10,7 @@
 
     "custom/settings": {
         "format": "  ",
-        "on-click": "alacritty -e nvim ~/.config/hypr/",
+        "on-click": "ghostty -e nvim ~/.config/hypr/",
         "tooltip": false
     },
 
@@ -22,12 +22,6 @@
     "tray": {
         "icon-size": 21,
         "spacing": 10
-    },
-
-    "custom/wlogout": {
-        "format": "    ",
-        "on-click": "wlogout",
-        "tooltip": false
     },
 
     "clock": {

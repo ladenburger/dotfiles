@@ -22,7 +22,6 @@
         "pulseaudio",
         "bluetooth",
         "custom/settings",
-        "clock",
-        "custom/wlogout"
+        "clock"
     ]
 }

@@ -1,16 +1,15 @@
 * { 
     font-family: "Helvetica"; 
-    font-size: 12px;
+    font-size: 10px;
 }
 
 window#waybar {
-    background-color: #282828;
+    background-color: rgba(21,21,21, 0.4);
 }
 
 #workspaces button {
-    padding: 0px 3px;
-    border-radius: 10px;
-    margin: 2px;
+    padding: 0px 4px;
+    border-radius: 4px;
 }
 
 #workspaces button.active {
@@ -22,6 +21,8 @@ window#waybar {
 
 #custom-logo {
     font-size: 17px;
+    color: #d65d0e;
+;
 }
 
 #custom-settings, 
@@ -29,11 +30,6 @@ window#waybar {
 #clock,
 #network,
 #language,
-#custom-logo
-#custom-wlogout {
+#custom-logo {
     margin: 0 12px;
-}
-
-#clock {
-    font-size: 14px;
 }
