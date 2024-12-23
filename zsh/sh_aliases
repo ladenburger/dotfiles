@@ -7,6 +7,7 @@ alias ..='cd ..'
 alias v=nvim
 alias sv='sudo nvim'
 alias vim=nvim
+alias lg=/usr/bin/lazygit
 
 alias btw=fastfetch
 alias neofetch=fastfetch
