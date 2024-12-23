@@ -8,6 +8,7 @@ export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
 export RUSTUP_HOME="${XDG_DATA_HOME}"/rustup
 export CARGO_HOME="${XDG_DATA_HOME}"/cargo
 export LESSHISTFILE="-"
+export TS3_CONFIG_DIR="$XDG_CONFIG_HOME/ts3client"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc-2.0"
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
 export GOPATH="${XDG_DATA_HOME}/go"
@@ -100,4 +101,11 @@ source <(ng completion script)
 shell_aliases_file=$ZDOTDIR/sh_aliases
 if [ -f $shell_aliases_file ]; then
     . $shell_aliases_file
+fi
+
+# fnm
+FNM_PATH="/home/benedikt/.local/share//fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/benedikt/.local/share//fnm:$PATH"
+  eval "`fnm env`"
 fi
