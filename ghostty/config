@@ -5,6 +5,7 @@ gtk-titlebar = false
 window-padding-x = 4
 window-padding-y = 4
 font-size = 13
+font-family = "Zed Mono Extended"
 cursor-style = block
 cursor-style-blink = false
 confirm-close-surface = false
