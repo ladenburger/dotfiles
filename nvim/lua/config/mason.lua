@@ -7,6 +7,7 @@ require("mason-lspconfig").setup({
 		"ts_ls",
 		"angularls",
 		"jedi_language_server",
+        "somesass_ls",
 	},
 })
 
@@ -20,3 +21,4 @@ require("lspconfig").angularls.setup({
 	capabilities = capabilities,
 })
 require("lspconfig").jedi_language_server.setup({})
+require("lspconfig").somesass_ls.setup({})
