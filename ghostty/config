@@ -1,6 +1,6 @@
 theme = GruvboxDark
 background = 0f0f0f
-background-opacity = 1
+background-opacity = 0.95
 gtk-titlebar = false
 window-padding-x = 4
 window-padding-y = 4
