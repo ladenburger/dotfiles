@@ -1,0 +1,116 @@
+{
+    "display": {
+        "separator": " : "
+    },
+    "modules": [
+        {
+            "type": "os",
+            "key": "   OS",
+            "keyColor": "red"
+        },
+        {
+            "type": "kernel",
+            "key": "   Kernel",
+            "keyColor": "red"
+        },
+        {
+            "type": "command",
+            "key": "   OS Age ",
+            "keyColor": "31",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); days_with_addition=$((days_difference + 422)); echo $days_with_addition days"
+        },
+        {
+            "type": "uptime",
+            "key": "   Uptime",
+            "keyColor": "red"
+        },
+        {
+            "type": "packages",
+            "key": "   Packages",
+            "keyColor": "red"
+        },
+        {
+            "type": "wm",
+            "key": "   WM",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "Theme",
+            "key": "   Theme",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "terminal",
+            "key": "   Terminal",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "Shell",
+            "key": "   Shell",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "editor",
+            "key": "   Editor",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "terminalfont",
+            "key": "   Font",
+            "keyColor": "magenta"
+        },
+        "break",
+        {
+            "type": "Disk",
+            "key": "   Disk {mountpoint}",
+            "keyColor": "blue"
+        },
+        {
+            "type": "cpu",
+            "format": "{1}",
+            "key": "   CPU",
+            "keyColor": "cyan"
+        },
+        {
+            "type":   "host",
+            "key": "    Host",
+            "keyColor": "yellow"
+
+        },
+        {
+            "type": "gpu",
+            "format": "{name}", // See `fastfetch -h gpu-format` for detail
+            "key": "   GPU",
+            "keyColor": "green"
+        },
+        {
+            "type": "gpu",
+            "format": "{3}",
+            "key": "   GPU Driver",
+            "keyColor": "green"
+        },
+        {
+            "type": "display",
+            "key": "   Display",
+            "keyColor": "green"
+        },
+        {
+            "type": "memory",
+            "key": "   Memory",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "swap",
+            "key": "  󰾶 Swap",
+            "keyColor": "magenta"
+        },
+
+        "break",
+        {
+            "type": "colors",
+            "paddingLeft": 2,
+            "symbol": "circle"
+        },
+        "break"
+    ]
+}
