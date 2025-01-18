@@ -12,7 +12,7 @@ return {
 		vim.cmd([[colorscheme gruvbox-material]]) -- Set color scheme
 		-- changing bg and border colors
 		vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-		vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Normal" })
+		--vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Normal" })
 		vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 		vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
 		vim.api.nvim_set_hl(0, "PmenuSel", { link = "Search" })
