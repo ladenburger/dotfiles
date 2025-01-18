@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-    background: rgba(15, 15, 15, 0.95);
+    background: rgba(15, 15, 15, 0.45);
     border-bottom-style: inset;
     border-bottom: 2px solid #689d6a;
 }
