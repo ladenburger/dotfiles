@@ -19,6 +19,8 @@ export SCREENDIR="${XDG_CACHE_HOME}/screen"
 export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 
+export LEDGER_FILE="${HOME}"/files/documents/Ledger/2025.journal
+
 # remove csharp spyware-default
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
