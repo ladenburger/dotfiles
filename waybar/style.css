@@ -4,28 +4,46 @@
     font-family: "Inconsolata";
     font-size: 16px;
     min-height: 0;
-    color: #ebdbb2;
 }
 
 window#waybar {
-    background: rgba(15, 15, 15, 0.75);
+    background: rgba(15, 15, 15, 0.0);
     border-bottom-style: inset;
-    border-bottom: 2px solid #689d6a;
 }
 
 #clock, #window { 
     font-weight: 500;
 }
 
+#workspaces, #logo, #clock, #battery, #cpu, #memory, #network, 
+#pulseaudio, #tray, #mode, #idle_inhibitor, #language {
+    color: #ebdbb2;
+    padding: 0 5px;
+    margin: 0 4px;
+    background: rgba(15, 15, 15, 0.6);
+    border: solid 1px grey;
+    padding: 0 15px;
+    border-radius: 4px;
+}
+
+#window {
+    margin-left: 4px;
+}
+
+#workspaces {
+    padding: 0;
+}
+
 /* Workspace Buttons */
+#workspaces button {
+    border-radius: 4px;
+}
+
 #workspaces button label{
     font-weight: 800;
     font-size: 12px;
-    color: #689d6a;
 }
-#workspaces button.active label {
-    color: #1d2021;
-}
+
 #workspaces button.active {
     background: #689d6a; 
 }
@@ -33,11 +51,6 @@ window#waybar {
 #mode {
     background-color: #cc241d;
     color: white;
-}
-
-#logo, #clock, #battery, #cpu, #memory, #network, #pulseaudio, #tray, #mode, #idle_inhibitor {
-    padding: 0 5px;
-    margin: 0 10px;
 }
 
 #custom-logo {
@@ -54,30 +67,17 @@ window#waybar {
     color: #1d2021;
 }
 
-
-#custom-music {
-    color: #b8bb26;
-    margin: 0 15px;
-    padding: 0 20px;
-    border-bottom: 4px solid #b8bb26;
-
-}
-
 #clock {
-    margin: 0;
     color: #fabd2f;
     border-bottom: 4px solid #fabd2f;
 }
-
 
 #network.disconnected {
     color: #cc241d;
     border-bottom: 4px solid #cc241d;
 }
 
-
 #pulseaudio.muted {
     padding: 0 20px;
-    color: #cc241d;
     border-bottom: 4px solid #cc241d;
 }
