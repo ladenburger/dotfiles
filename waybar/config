@@ -36,8 +36,8 @@
     },
 
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr} ",
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "{ifname} ",
         "format-disconnected": "Disconnected ⚠"
     },
     "pulseaudio": {
