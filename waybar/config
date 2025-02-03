@@ -5,6 +5,9 @@
     "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
     "modules-center": [],
     "modules-right": ["hyprland/language", "pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "hyprland/language": {
+        "format": "{long} 󰌌"
+    },
     "hyprland/workspaces": {
         "active-only": false,
         "disable-scroll": true,
