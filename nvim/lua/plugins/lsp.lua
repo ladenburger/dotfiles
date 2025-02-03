@@ -33,10 +33,11 @@ return {
                     -- --------------------------------------------------------
                     -- ------------------ Setup AngularLS ---------------------
                     -- --------------------------------------------------------
-                    -- NOTE: angularls cant seem to find project root manually 
-                    -- for the language server, so just use the working 
-                    -- directory for now. This requires to install the LSP in 
-                    -- the project.
+                    -- NOTE: angularls can't seem to find the project root 
+                    -- manually for the language server... 
+                    -- So just use the working directory for now. 
+                    -- Although this requires installing the LSP directly 
+                    -- using npm inside the projects package.json.
                     -- npm i --save-dev @angular/language-server
                     -- npm i --save-dev @angular/language-service
                     -- npm i --save-dev typescript
