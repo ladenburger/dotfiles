@@ -2,12 +2,12 @@
     border: none;
     border-radius: 0px;
     font-family: "Inconsolata";
-    font-size: 16px;
+    font-size: 15px;
     min-height: 0;
 }
 
 window#waybar {
-    background: rgba(15, 15, 15, 0.0);
+    background: rgba(15, 15, 15, 1);
     border-bottom-style: inset;
 }
 
@@ -16,14 +16,13 @@ window#waybar {
 }
 
 #workspaces, #logo, #clock, #battery, #cpu, #memory, #network, 
-#pulseaudio, #tray, #mode, #idle_inhibitor, #language {
+#pulseaudio, #tray, #language {
     color: #ebdbb2;
-    padding: 0 5px;
-    margin: 0 4px;
+    padding: 0 3px;
+    margin: 0 2px;
     background: rgba(15, 15, 15, 0.75);
-    border: solid 1px grey;
     padding: 0 15px;
-    border-radius: 4px;
+    border-right: solid grey 2px;
 }
 
 #window {
@@ -32,11 +31,11 @@ window#waybar {
 
 #workspaces {
     padding: 0;
+    margin-right: 10px;
 }
 
 /* Workspace Buttons */
 #workspaces button {
-    border-radius: 4px;
 }
 
 #workspaces button label{
@@ -48,28 +47,14 @@ window#waybar {
     background: #689d6a; 
 }
 
-#mode {
-    background-color: #cc241d;
-    color: white;
-}
 
 #custom-logo {
     font-size: 20px;
     font-weight: 800;
 }
 
-#idle_inhibitor {
-    padding: 0 10px;
-}
-
-#idle_inhibitor.activated {
-    background-color: #689d6a;
-    color: #1d2021;
-}
-
 #clock {
     color: #fabd2f;
-    border-bottom: 4px solid #fabd2f;
 }
 
 #network.disconnected {
