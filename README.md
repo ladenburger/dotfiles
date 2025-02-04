@@ -17,8 +17,10 @@ I'm currently using [Hyprland](https://github.com/hyprwm/Hyprland).
 # Preview
 ## Prompt
 ![prompt](https://github.com/user-attachments/assets/a27f6968-959e-4a81-b796-31ab5c1240ab)
+## Waybar
+![prompt](https://github.com/user-attachments/assets/2249c82f-1bae-417c-8dd9-2e3888ff9914)
 ## Nvim
-![nvim](https://github.com/user-attachments/assets/d12e9a5d-f290-4b27-9036-165eb6eb9577)
+![nvim](https://github.com/user-attachments/assets/28eacd68-13db-431a-9a98-df31934e327a)
 
 # Useful stuff 
 ## Hyprcursor used
