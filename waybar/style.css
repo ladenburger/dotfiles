@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0px;
     font-family: "Inconsolata";
-    font-size: 15px;
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -18,10 +18,10 @@ window#waybar {
 #workspaces, #logo, #clock, #battery, #cpu, #memory, #network, 
 #pulseaudio, #tray, #language {
     color: #ebdbb2;
-    padding: 0 3px;
-    margin: 0 2px;
+    padding: 0 2px;
+    margin: 0 1px;
     background: rgba(15, 15, 15, 0.75);
-    padding: 0 15px;
+    padding: 0 10px;
     border-right: solid grey 2px;
 }
 
@@ -40,7 +40,7 @@ window#waybar {
 
 #workspaces button label{
     font-weight: 800;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 #workspaces button.active {
