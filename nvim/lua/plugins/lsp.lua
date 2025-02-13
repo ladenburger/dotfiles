@@ -7,6 +7,7 @@ local servers = {
     "jedi_language_server",
     "somesass_ls",
     "csharp_ls",
+    "ltex",
 }
 
 return {
