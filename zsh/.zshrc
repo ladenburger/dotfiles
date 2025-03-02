@@ -1,20 +1,21 @@
 # $HOME cleanup
 export XDG_DATA_HOME="${HOME}"/.local/share/
-export XDG_CONFIG_HOME=${HOME}/.config
-export XDG_STATE_HOME=${HOME}/.local/state
-export XDG_CACHE_HOME=${HOME}/.cache
-export DOTNET_CLI_HOME="${XDG_DATA_HOME}"/dotnet
-export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
-export RUSTUP_HOME="${XDG_DATA_HOME}"/rustup
-export CARGO_HOME="${XDG_DATA_HOME}"/cargo
+export XDG_CONFIG_HOME=${HOME}/.config/
+export XDG_STATE_HOME=${HOME}/.local/state/
+export XDG_CACHE_HOME=${HOME}/.cache/
+export DOTNET_CLI_HOME="${XDG_DATA_HOME}"/dotnet/
+export GNUPGHOME="${XDG_DATA_HOME}"/gnupg/
+export RUSTUP_HOME="${XDG_DATA_HOME}"/rustup/
+export CARGO_HOME="${XDG_DATA_HOME}"/cargo/
 export LESSHISTFILE="-"
-export TS3_CONFIG_DIR="$XDG_CONFIG_HOME/ts3client"
+export TS3_CONFIG_DIR="${XDG_CONFIG_HOME}/ts3client/"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc-2.0"
 export WGETRC="${XDG_CONFIG_HOME}/wget/wgetrc"
-export GOPATH="${XDG_DATA_HOME}/go"
-export GOMODCACHE="${XDG_CACHE_HOME}/go/mod"
+export GOPATH="${XDG_DATA_HOME}/go/"
+export GOMODCACHE="${XDG_CACHE_HOME}/go/mod/"
 export SCREENRC="${XDG_CONFIG_HOME}/screen/screenrc"
-export SCREENDIR="${XDG_CACHE_HOME}/screen"
+export SCREENDIR="${XDG_CACHE_HOME}/screen/"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 
 export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml

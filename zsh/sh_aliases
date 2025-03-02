@@ -11,3 +11,5 @@ alias lg=/usr/bin/lazygit
 
 alias btw=fastfetch
 alias neofetch=fastfetch
+
+alias tt='gio trash'
