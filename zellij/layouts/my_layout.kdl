@@ -1,0 +1,22 @@
+layout {
+    tab name="1" {
+        pane size=1 borderless=true { plugin location="tab-bar"; }
+        pane borderless=true {}
+        pane size=1 borderless=true { plugin location="status-bar"; }
+    }
+    tab name="2" {
+        pane size=1 borderless=true { plugin location="tab-bar"; }
+        pane borderless=true {}
+        pane size=1 borderless=true { plugin location="status-bar"; }
+    }
+    tab name="3" {
+        pane size=1 borderless=true { plugin location="tab-bar"; }
+        pane borderless=true {}
+        pane size=1 borderless=true { plugin location="status-bar"; }
+    }
+    tab name="4" {
+        pane size=1 borderless=true { plugin location="tab-bar"; }
+        pane borderless=true {}
+        pane size=1 borderless=true { plugin location="status-bar"; }
+    }
+}
