@@ -19,7 +19,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = "on [$hostname](bold yellow) "
+format = "on [$hostname](bold purple) "
 
 [directory]
 truncation_length = 3

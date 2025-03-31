@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-    background: rgba(15, 15, 15, 0.0);
+    background: rgba(0, 0, 0, 0.85);
     border-bottom-style: inset;
 }
 
@@ -17,11 +17,8 @@ window#waybar {
 
 #workspaces, #logo, #clock, #battery, #cpu, #memory, #network, 
 #pulseaudio, #tray, #mode, #idle_inhibitor, #language {
-    color: #ebdbb2;
     padding: 0 5px;
     margin: 0 4px;
-    background: rgba(15, 15, 15, 0.75);
-    border: solid 1px grey;
     padding: 0 15px;
     border-radius: 4px;
 }
@@ -37,6 +34,7 @@ window#waybar {
 /* Workspace Buttons */
 #workspaces button {
     border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 #workspaces button label{
@@ -45,11 +43,13 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background: #689d6a; 
+    margin: 4px 0;
+    padding: 2px 18px;
+    background-color: #908CAA;
+    color: black;
 }
 
 #mode {
-    background-color: #cc241d;
     color: white;
 }
 
@@ -58,18 +58,9 @@ window#waybar {
     font-weight: 800;
 }
 
-#idle_inhibitor {
-    padding: 0 10px;
-}
-
-#idle_inhibitor.activated {
-    background-color: #689d6a;
-    color: #1d2021;
-}
-
 #clock {
-    color: #fabd2f;
-    border-bottom: 4px solid #fabd2f;
+    color: #84A0C6;
+    border-bottom: 4px solid #84A0C6;
 }
 
 #network.disconnected {
