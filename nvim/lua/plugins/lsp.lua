@@ -5,6 +5,7 @@ local servers = {
 	"ts_ls",
 	"angularls",
 	"jedi_language_server",
+    "sqlls",
 	"cssls",
 	"csharp_ls",
 	"ltex",
