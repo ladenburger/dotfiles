@@ -13,3 +13,5 @@ alias btw=fastfetch
 alias neofetch=fastfetch
 
 alias tt='gio trash'
+
+alias zj=zellij
