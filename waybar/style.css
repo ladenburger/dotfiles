@@ -7,7 +7,7 @@
 }
 
 window#waybar {
-    background: rgba(0, 0, 0, 0.85);
+    background: #282828;
     border-bottom-style: inset;
 }
 
@@ -45,8 +45,8 @@ window#waybar {
 #workspaces button.active {
     margin: 4px 0;
     padding: 2px 18px;
-    background-color: #908CAA;
-    color: black;
+    background-color: #fe8019;
+    color: #282828;
 }
 
 #mode {
@@ -59,7 +59,7 @@ window#waybar {
 }
 
 #clock {
-    color: #84A0C6;
+    color: #908CAA;
     border-bottom: 4px solid #84A0C6;
 }
 
