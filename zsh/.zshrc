@@ -100,10 +100,6 @@ else
 fi
 alias ls='ls --color=auto'
 
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
 # Load aliases
 shell_aliases_file=$ZDOTDIR/sh_aliases
 if [ -f $shell_aliases_file ]; then
