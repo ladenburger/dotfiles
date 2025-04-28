@@ -2,23 +2,19 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
-    "modules-center": [],
-    "modules-right": ["hyprland/language", "pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "modules-left": ["hyprland/window"],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": ["tray", "hyprland/language", "pulseaudio", "network", "memory", "battery", "clock"],
     "hyprland/language": {
-        "format": "{long} 󰌌"
+        "format": "{short} 󰌌"
     },
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "5": "󰽢",
-            "6": "󰽨",
-            "8": "󰽧",
-            "4": "󰽦",
-            "2": "󰽥",
-            "3": "󰽣",
-            "7": "󰽡",
-            "1": "󰽤",
+            "default": "󰽤",
+            "active": "󰽢"
         },
         "persistent-workspaces": {
             "*": [1, 2, 3, 4, 5, 6, 7, 8]
@@ -26,8 +22,8 @@
         "disable-scroll": true
     },
     "tray": {
-        "icon-size": 12,
-        "spacing": 10
+        "icon-size": 14,
+        "spacing": 8
     },
     "clock": {
         "format": "{:%Y-%m-%d - %H:%M}",
@@ -63,7 +59,6 @@
         "format-disconnected": "Disconnected ⚠"
     },
     "pulseaudio": {
-        //"scroll-step": 1,
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
         "format-muted": "",

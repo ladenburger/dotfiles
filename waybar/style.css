@@ -1,74 +1,67 @@
 * {
     border: none;
-    border-radius: 0px;
     font-family: "Inconsolata";
     font-size: 16px;
     min-height: 0;
 }
 
 window#waybar {
-    background: #282828;
+    background: rgba(0,0,0,0);
+    /*background: #28282800;*/
     border-bottom-style: inset;
 }
 
-#clock, #window { 
-    font-weight: 500;
-}
-
-#workspaces, #logo, #clock, #battery, #cpu, #memory, #network, 
-#pulseaudio, #tray, #mode, #idle_inhibitor, #language {
-    padding: 0 5px;
-    margin: 0 4px;
-    padding: 0 15px;
-    border-radius: 4px;
-}
-
-#window {
-    margin-left: 4px;
+#workspaces, #battery, #memory, #network, 
+#pulseaudio, #tray, #mode, #language, #clock {
+    background: #28282800;
+    padding: 0 14px;
+    border-top: 0;
 }
 
 #workspaces {
-    padding: 0;
-}
-
-/* Workspace Buttons */
-#workspaces button {
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-#workspaces button label{
-    font-weight: 800;
-    font-size: 12px;
+    border-bottom: solid 3px #458588;
 }
 
 #workspaces button.active {
-    margin: 4px 0;
-    padding: 2px 18px;
-    background-color: #fe8019;
-    color: #282828;
+    color: #689d6a;
 }
 
-#mode {
-    color: white;
-}
-
-#custom-logo {
-    font-size: 20px;
-    font-weight: 800;
+#window {
+    margin-left: 16px;
+    color: #edbbb2;
 }
 
 #clock {
-    color: #908CAA;
-    border-bottom: 4px solid #84A0C6;
+    margin-right: 16px;
+    font-weight: bold;
+}
+
+#network {
+    border-bottom: solid 3px #fe8019;
 }
 
 #network.disconnected {
-    color: #cc241d;
-    border-bottom: 4px solid #cc241d;
+    color: #282828;
+    background: #fb4934;
+    border-bottom: 3px solid #cc241d;
+}
+
+#language {
+    border-bottom: solid 3px #d79921;
+}
+
+#pulseaudio, #clock {
+    border-bottom: solid 3px #689d6a;
 }
 
 #pulseaudio.muted {
-    padding: 0 20px;
-    border-bottom: 4px solid #cc241d;
+    color: #282828;
+    padding: 0 30px;
+    background: #fb4934;
+    border-bottom: 2px solid #cc241d;
 }
+
+#tray, #memory {
+    border-bottom: solid 3px #458588;
+}
+
