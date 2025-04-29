@@ -16,6 +16,7 @@ export GOMODCACHE="${XDG_CACHE_HOME}/go/mod/"
 export SCREENRC="${XDG_CONFIG_HOME}/screen/screenrc"
 export SCREENDIR="${XDG_CACHE_HOME}/screen/"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export W3M_DIR="$XDG_STATE_HOME/w3m"
 
 export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
