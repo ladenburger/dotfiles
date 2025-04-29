@@ -7,7 +7,6 @@
 
 window#waybar {
     background: rgba(0,0,0,0);
-    /*background: #28282800;*/
     border-bottom-style: inset;
 }
 
@@ -46,7 +45,7 @@ window#waybar {
     border-bottom: 3px solid #cc241d;
 }
 
-#language {
+#language, #battery {
     border-bottom: solid 3px #d79921;
 }
 
