@@ -6,7 +6,6 @@ local servers = {
 	"angularls",
 	"jedi_language_server",
 	"cssls",
-	"ltex",
 }
 
 return {

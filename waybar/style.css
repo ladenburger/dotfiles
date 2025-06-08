@@ -6,28 +6,27 @@
 }
 
 window#waybar {
-    background: rgba(0,0,0,0);
-    border-bottom-style: inset;
+    background: #111111;
 }
 
 #workspaces, #battery, #memory, #network, 
 #pulseaudio, #tray, #mode, #language, #clock {
-    background: #28282800;
+    color: #E8C597;
     padding: 0 14px;
     border-top: 0;
 }
 
-#workspaces {
-    border-bottom: solid 3px #458588;
+#workspaces button {
+    color: #463524;
 }
 
 #workspaces button.active {
-    color: #689d6a;
+    color: #E9A341;
 }
 
 #window {
     margin-left: 16px;
-    color: #edbbb2;
+    color: #E8C597;
 }
 
 #clock {
@@ -35,32 +34,14 @@ window#waybar {
     font-weight: bold;
 }
 
-#network {
-    border-bottom: solid 3px #fe8019;
-}
-
 #network.disconnected {
-    color: #282828;
+    color: #EECA9B;
     background: #fb4934;
-    border-bottom: 3px solid #cc241d;
-}
-
-#language, #battery {
-    border-bottom: solid 3px #d79921;
-}
-
-#pulseaudio, #clock {
-    border-bottom: solid 3px #689d6a;
 }
 
 #pulseaudio.muted {
-    color: #282828;
+    color: #EECA9B;
     padding: 0 30px;
     background: #fb4934;
-    border-bottom: 2px solid #cc241d;
-}
-
-#tray, #memory {
-    border-bottom: solid 3px #458588;
 }
 

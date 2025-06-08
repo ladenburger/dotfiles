@@ -15,3 +15,4 @@ alias neofetch=fastfetch
 alias tt='gio trash'
 
 alias zj=zellij
+alias nb=/usr/bin/newsboat

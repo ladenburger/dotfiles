@@ -3,31 +3,32 @@ add_newline = true
 command_timeout = 1000
 
 format = """\
-    [╭╴](138)$env_var\
-$all[╰─](138)$character"""
+    [╭╴](#ba853b)$env_var\
+$all[╰─](#ba853b)$character"""
 
 [character]
-success_symbol = "[󰏰](138)"
+success_symbol = "[󰘧](bold #dd932c)"
 error_symbol = "[](138)"
 vimcmd_symbol = ""
 
 [username]
-style_user = "white"
-style_root = "white"
-format = "[$user]($style) "
+style_user = "#928374"
+style_root = "red"
+format = "[$user]($style)"
 show_always = true
 
 [hostname]
 ssh_only = false
-format = "on [$hostname](bold purple) "
+format = "[@](#7c6f64)[$hostname](bold #427B58)[ 󰥭󰥭](#513926)"
 
 [directory]
 truncation_length = 3
 truncation_symbol = "… /"
+style = "#dd932c"
 home_symbol = " ~"
 read_only_style = "197"
 read_only = "  "
-format = "at [$path]($style)[$read_only]($read_only_style) "
+format = " [$path]($style)[$read_only]($read_only_style) "
 
 [aws]
 symbol = "  "
