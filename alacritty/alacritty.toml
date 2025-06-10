@@ -1,24 +1,12 @@
 [font]
 size = 13.0
-
-[font.bold]
-family = "Zed Mono Extended"
-style  = "Bold"
-
-[font.bold_italic]
-family = "Zed Mono Extended"
-style  = "Bold Italic"
-
-[font.italic]
-family = "Zed Mono Extended"
-style  = "Italic"
-
-[font.normal]
-family = "Zed Mono Extended"
-style  = "Regular"
+normal.family = "ZedMono Nerd Font"
+bold.family = "ZedMono Nerd Font"
+italic.family = "ZedMono Nerd Font"
+bold_italic.family = "ZedMono Nerd Font"
 
 [window]
-padding = { x = 8, y = 1 }
+padding = { x = 8, y = 0 }
 opacity = 0.85
 
 [colors.primary]
