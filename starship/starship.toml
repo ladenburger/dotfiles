@@ -3,12 +3,12 @@ add_newline = true
 command_timeout = 1000
 
 format = """\
-    [╭╴](#ba853b)$env_var\
-$all[╰─](#ba853b)$character"""
+    [╭╴](#928374)$env_var\
+$all[╰─](#928374)$character"""
 
 [character]
 success_symbol = "[󰘧](bold #dd932c)"
-error_symbol = "[](138)"
+error_symbol = "[ ](red)"
 vimcmd_symbol = ""
 
 [username]
@@ -19,7 +19,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = "[@](#7c6f64)[$hostname](bold #427B58)[ 󰥭󰥭](#513926)"
+format = "[@](#7c6f64)[$hostname](bold #427B58)[ ](#928374)"
 
 [directory]
 truncation_length = 3
