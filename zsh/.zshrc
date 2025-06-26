@@ -105,8 +105,8 @@ if [ -f $shell_aliases_file ]; then
 fi
 
 # fnm
-FNM_PATH="/home/benedikt/.local/share//fnm"
+FNM_PATH="${HOME}/.local/share//fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/benedikt/.local/share//fnm:$PATH"
+  export PATH="/home/${HOME}/.local/share//fnm:$PATH"
   eval "`fnm env`"
 fi
