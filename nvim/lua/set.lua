@@ -1,6 +1,5 @@
 vim.opt.guicursor = ""
 vim.opt.nu = true
-vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -23,4 +22,9 @@ vim.g.mapleader = " "
 vim.diagnostic.config({virtual_text = true})
 vim.opt.spell = true
 vim.opt.spelllang = { "en", "de" }  -- English and German
-vim.o.winborder = "rounded"
+vim.opt.winborder = "rounded"
+
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
