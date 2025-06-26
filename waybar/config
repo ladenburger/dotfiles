@@ -2,15 +2,27 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "modules-left": ["hyprland/window"],
+    "modules-left": ["niri/window", "hyprland/window"],
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "niri/workspaces"
     ],
     "modules-right": ["tray", "hyprland/language", "pulseaudio", "network", "memory", "battery", "clock"],
     "hyprland/language": {
         "format": "{short} 󰌌"
     },
     "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "󰽤",
+            "active": "󰽢"
+        },
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5, 6, 7, 8]
+        },
+        "disable-scroll": true
+    },
+    "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {
             "default": "󰽤",

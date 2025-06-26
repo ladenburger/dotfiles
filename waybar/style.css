@@ -1,7 +1,7 @@
 * {
     border: none;
     font-family: "Inconsolata";
-    font-size: 16px;
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -9,11 +9,11 @@ window#waybar {
     background: #111111;
 }
 
-#workspaces, #battery, #memory, #network, 
+#window, #battery, #memory, #network, 
 #pulseaudio, #tray, #mode, #language, #clock {
     color: #E8C597;
-    padding: 0 14px;
-    border-top: 0;
+    padding: 0 6px;
+    opacity: 0.5
 }
 
 #workspaces button {
