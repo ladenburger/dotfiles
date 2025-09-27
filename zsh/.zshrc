@@ -24,6 +24,9 @@ export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 export LEDGER_FILE="${HOME}"/files/documents/Ledger/2025.journal
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
 
+# theming
+export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
+
 # sh history
 HISTFILE=~/.local/share/zsh/.histfile
 HISTSIZE=10000
