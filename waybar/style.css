@@ -1,7 +1,6 @@
 * {
     border: none;
-    font-family: "Inconsolata";
-    font-size: 13px;
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -9,24 +8,42 @@ window#waybar {
     background: #111111;
 }
 
-#window, #battery, #memory, #network, 
-#pulseaudio, #tray, #mode, #language, #clock {
-    color: #E8C597;
-    padding: 0 6px;
-    opacity: 0.5
+#battery, #network, #battery,
+#pulseaudio, #tray, #mode, #language {
+    color: #7c6f64;
+    margin: 2px 8px;
+    padding: 0 12px;
+    color: #111111;
+    border-radius: 8px;
+}
+
+#battery {
+    background-color: #83a598;
+}
+
+#language {
+    background-color: #b16286;
+}
+
+#tray {
+    background-color: #076678;
+}
+
+#network {
+    background-color: #82c07c;
+}
+
+#pulseaudio {
+    background-color: #b57614;
 }
 
 #workspaces button {
-    color: #463524;
+    color: #82c07c;
 }
 
-#workspaces button.active {
-    color: #E9A341;
-}
-
-#window {
+#window, #clock {
     margin-left: 16px;
-    color: #E8C597;
+    color: #689d6a;
 }
 
 #clock {
@@ -36,12 +53,12 @@ window#waybar {
 
 #network.disconnected {
     color: #EECA9B;
-    background: #fb4934;
+    background: #b10000;
 }
 
 #pulseaudio.muted {
     color: #EECA9B;
     padding: 0 30px;
-    background: #fb4934;
+    background: #b10000;
 }
 
