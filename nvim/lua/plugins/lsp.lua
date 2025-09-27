@@ -27,44 +27,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			for _, server in ipairs(servers) do
-				if server == "angularls" then
-					-- --------------------------------------------------------
-					-- ------------------ Setup AngularLS ---------------------
-					-- --------------------------------------------------------
-					-- NOTE: angularls can't seem to find the project root
-					-- manually for the language server...
-					-- So just use the working directory for now.
-					-- Although this requires installing the LSP directly
-					-- using npm inside the projects package.json.
-					-- npm i --save-dev @angular/language-server
-					-- npm i --save-dev @angular/language-service
-					-- npm i --save-dev typescript
-					-- npm i --save-dev typescript-language-server
-
-					local project_library_path = vim.fn.getcwd()
-
-					local cmd = {
-						"ngserver",
-						"--stdio",
-						"--tsProbeLocations",
-						project_library_path,
-						"--ngProbeLocations",
-						project_library_path,
-					}
-					require("lspconfig").angularls.setup({
-						cmd = cmd,
-						on_new_config = function(new_config)
-							new_config.cmd = cmd
-						end,
-					})
-				else
-					-- --------------------------------------------------------
-					-- ----------- Setup all default servers ------------------
-					-- --------------------------------------------------------
-					require("lspconfig")[server].setup({})
-				end
-			end
 		end,
 	},
 	{
