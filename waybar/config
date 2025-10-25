@@ -23,8 +23,7 @@
         "spacing": 8
     },
     "clock": {
-        "format": "{:%Y-%m-%d - %H:%M}",
-        "format-alt": "{:%A, %B %d at %I:%M %p}",
+        "format": "{:%A, %B %d at %I:%M %p}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode"          : "year",
