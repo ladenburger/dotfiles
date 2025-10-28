@@ -21,7 +21,7 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 
-export LEDGER_FILE="${HOME}"/files/documents/Ledger/2025.journal
+export LEDGER_FILE="${HOME}"/files/documents/Ledger/hledger.journal
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
 
 # theming
