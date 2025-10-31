@@ -31,11 +31,11 @@ return {
       vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { link = "Normal" })
       vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { link = "Search" })
       vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { link = "Search" })
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#282828" }) -- example Gruvbox dark gray
-      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#161616" })  -- example Gruvbox dark gray
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#282828" })
+      vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#222222" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#fabd2f", bold = true })
-      vim.api.nvim_set_hl(0, "StatusLine",   { bg = "#111111", fg = "#ffffff" })
-      vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#111111", fg = "#777777" })
+      vim.api.nvim_set_hl(0, "StatusLine",   { bg = "#282828", fg = "#ffffff" })
+      vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#282828", fg = "#777777" })
     end,
   },
 }

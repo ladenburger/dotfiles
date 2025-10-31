@@ -22,10 +22,9 @@ else
     gaps_out=$(awk -F'= *' '/gaps_out/ {print $2}' "$config")
     rounding=$(awk -F'= *' '/rounding/ {print $2}' "$config")
 
-    echo $rounding
     # Turn on gaps with values from hyprconfig
     hyprctl keyword general:gaps_in $gaps_in
-    hyprctl keyword general:gaps_out 20 $gaps_out
+    hyprctl keyword general:gaps_out $gaps_out
     hyprctl keyword decoration:rounding $rounding
     sed -i "/^$WS /d" "$STATE_FILE"
     echo "$WS 1" >> "$STATE_FILE"
