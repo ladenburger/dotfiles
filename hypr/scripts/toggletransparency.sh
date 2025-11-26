@@ -4,10 +4,10 @@ alacritty_cfg="$HOME/.config/alacritty/alacritty.toml"
 waybar_cfg="$HOME/.config/waybar/style.css"
 
 ALACRITTY_OPAQUE=1.0
-ALACRITTY_TRANSPARENT=0.92
+ALACRITTY_TRANSPARENT=0.83
 
 WAYBAR_OPAQUE="rgba(17, 17, 17, 1.00)"
-WAYBAR_TRANSPARENT="rgba(17, 17, 17, 0.91)"
+WAYBAR_TRANSPARENT="rgba(17, 17, 17, 0.83)"
 
 # ------------------- Alacritty -------------------
 if grep -q "opacity *= *$ALACRITTY_TRANSPARENT" "$alacritty_cfg"; then
@@ -33,6 +33,6 @@ else
     waybar_state="transparent"
 fi
 
-# --- Restart Waybar ---
+# Waybar has not hotreload, so we have to restart here
 echo "Restartinging waybar"
 pkill waybar && nohup waybar >/dev/null 2>&1 &
