@@ -19,9 +19,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
-vim.diagnostic.config({virtual_text = true})
+vim.diagnostic.config({ virtual_text = true })
 vim.opt.spell = true
-vim.opt.spelllang = { "en", "de" }  -- English and German
+vim.opt.spelllang = { "en", "de" } -- English and German
 vim.opt.winborder = "rounded"
 
 vim.opt.relativenumber = true
