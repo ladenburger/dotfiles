@@ -17,12 +17,14 @@ export SCREENRC="${XDG_CONFIG_HOME}/screen/screenrc"
 export SCREENDIR="${XDG_CACHE_HOME}/screen/"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
+export PASSWORD_STORE_DIR=~/.config/password-store
 
 export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 
 export LEDGER_FILE="${HOME}"/files/documents/Ledger/hledger.journal
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
 # theming
 export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
