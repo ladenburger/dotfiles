@@ -4,7 +4,7 @@ return {
 	config = function()
 		require("telescope").setup({
 			defaults = {
-				border = false,
+				border = true,
 				file_ignore_patterns = {
 					"node_modules",
 					"target",
