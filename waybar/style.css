@@ -5,39 +5,40 @@
 }
 
 window#waybar {
-    background: rgba(17, 17, 17, 1.00);
+    background: rgba(17, 17, 17, 0.83);
 }
 
 #battery, #network, #battery,
 #pulseaudio, #tray, #mode, #language {
     color: #7c6f64;
     margin: 2px 8px;
-    padding: 0 12px;
+    padding: 0 6px;
     color: #111111;
-    border-radius: 8px;
+    border-radius: 2px;
 }
 
 #battery {
-    background-color: #83a598;
+    color: #83a598;
 }
 
 #language {
-    background-color: #b16286;
+    color: #b16286;
 }
 
 #tray {
-    background-color: #076678;
+    color: #076678;
 }
 
 #network {
-    background-color: #82c07c;
+    color: #82c07c;
 }
 
 #pulseaudio {
-    background-color: #b57614;
+    color: #b57614;
 }
 
 #workspaces button {
+    padding: 2px;
     color: #82c07c;
 }
 
