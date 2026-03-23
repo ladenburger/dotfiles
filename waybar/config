@@ -2,9 +2,9 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window", "niri/workspaces", "niri/window" ],
     "modules-center": ["custom/mail"],
-    "modules-right": ["tray", "hyprland/language", "pulseaudio", "network", "battery", "clock"],
+    "modules-right": ["tray", "niri/language", "hyprland/language", "cpu", "pulseaudio", "network", "battery", "clock"],
     "hyprland/language": {
         "format": "{short} 󰌌"
     },
@@ -47,7 +47,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "alacritty -t 'Floating Terminal' -e htop"
+        "on-click": "alacritty -t 'Floating Terminal' -e btop"
 
     },
     "network": {
@@ -63,6 +63,9 @@
         },
         "format": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""],
+    },
+    "niri/workspaces": {
+        "disable-scroll": true,
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
