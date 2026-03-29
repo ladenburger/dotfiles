@@ -5,13 +5,13 @@
 }
 
 window#waybar {
-    background: rgba(40, 40, 40, 0.86);
+    background: rgba(25, 23, 36, 0.86);
 }
 
 #battery, #network,
 #pulseaudio, #tray, #mode, #language, #cpu,
 #memory, #temperature, #clock, #window {
-    background: rgba(60, 56, 54, 0.85);
+    background: rgba(38, 35, 58, 0.85);
     border-radius: 20px;
     margin: 4px 4px;
     padding: 0 12px;
@@ -23,23 +23,23 @@ window#waybar {
 }
 
 #custom-distro {
-    color: #d79921;
+    color: #c4a7e7;
     font-size: 16px;
-    background: rgba(60, 56, 54, 0.85);
+    background: rgba(38, 35, 58, 0.85);
     border-radius: 20px;
     margin: 4px 4px 4px 8px;
     padding: 0 14px;
 }
 
 #workspaces {
-    background: rgba(60, 56, 54, 0.85);
+    background: rgba(38, 35, 58, 0.85);
     border-radius: 20px;
     margin: 4px 4px;
     padding: 0 4px;
 }
 
 #workspaces button {
-    color: #a89984;
+    color: #6e6a86;
     font-weight: bold;
     border-radius: 20px;
     margin: 2px 1px;
@@ -50,26 +50,26 @@ window#waybar {
 
 #workspaces button:hover {
     box-shadow: none;
-    background: rgba(142, 192, 124, 0.25);
-    color: #8ec07c;
+    background: rgba(156, 207, 216, 0.2);
+    color: #9ccfd8;
 }
 
 #workspaces button.active {
-    background: rgba(142, 192, 124, 0.2);
-    color: #8ec07c;
+    background: rgba(156, 207, 216, 0.15);
+    color: #9ccfd8;
 }
 
-#cpu        { color: #fb4934; } /* bright red */
-#temperature { color: #fe8019; } /* bright orange */
-#memory     { color: #fabd2f; } /* bright yellow */
-#pulseaudio { color: #83a598; } /* bright blue */
-#network    { color: #8ec07c; } /* bright aqua */
-#battery    { color: #b8bb26; } /* bright green */
-#language   { color: #d3869b; } /* bright purple */
-#tray       { color: #928374; } /* gray */
+#cpu        { color: #eb6f92; } /* love */
+#temperature { color: #f6c177; } /* gold */
+#memory     { color: #ebbcba; } /* rose */
+#pulseaudio { color: #9ccfd8; } /* foam */
+#network    { color: #31748f; } /* pine */
+#battery    { color: #c4a7e7; } /* iris */
+#language   { color: #c4a7e7; } /* iris */
+#tray       { color: #6e6a86; } /* muted */
 
 #window {
-    color: #d5c4a1;
+    color: #908caa;
     font-weight: bold;
 }
 
@@ -80,22 +80,22 @@ window#waybar {
 }
 
 #clock {
-    color: #ebdbb2;
+    color: #e0def4;
     font-weight: bold;
     margin-right: 8px;
 }
 
 #network.disconnected {
-    color: #ebdbb2;
-    background: #cc241d;
+    color: #e0def4;
+    background: #eb6f92;
 }
 
 #pulseaudio.muted {
-    color: #ebdbb2;
-    background: #cc241d;
+    color: #e0def4;
+    background: #eb6f92;
 }
 
 #temperature.critical {
-    color: #ebdbb2;
-    background: #cc241d;
+    color: #e0def4;
+    background: #eb6f92;
 }
