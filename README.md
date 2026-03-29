@@ -28,3 +28,29 @@ I'm currently using [Hyprland](https://github.com/hyprwm/Hyprland).
 
 ## Fixing PTT on Wayland (for now :))
 [ptt-fix](https://github.com/DeedleFake/ptt-fix) (config in repo)
+
+## Themes
+- **GTK (Gruvbox)**: [Fausto-Korpsvart/Gruvbox-GTK-Theme](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme) → `~/.local/share/themes/`
+- **GTK (Rosé Pine)**: [rose-pine/gtk](https://github.com/rose-pine/gtk) → `~/.local/share/themes/`
+
+### Window Manager
+The `ACTIVE_WM` environment variable controls which window manager is autostarted. Set it in your shell profile (e.g. `~/.zprofile`):
+```sh
+export ACTIVE_WM=hyprland  # or niri, etc.
+```
+
+### switch-theme
+The `switch-theme` script switches between gruvbox and rosepine. Symlink it to `~/.local/bin`:
+```sh
+ln -s /path/to/dotfiles/switch-theme ~/.local/bin/switch-theme
+```
+
+## Icons
+- **Gruvbox Dark**: [jmattheis/gruvbox-dark-icons-gtk](https://github.com/jmattheis/gruvbox-dark-icons-gtk) → `~/.local/share/icons/`
+- **Rosé Pine**: [rose-pine/gtk](https://github.com/rose-pine/gtk) (icons release) → `~/.local/share/icons/`
+
+## Fonts
+- **ZedMono**: [zed-industries/zed-fonts](https://github.com/zed-industries/zed-fonts) → `~/.local/share/fonts/`
+
+## Cursor
+- **Bibata Modern Ice**: [ful1e5/Bibata_Cursor](https://github.com/ful1e5/Bibata_Cursor)
