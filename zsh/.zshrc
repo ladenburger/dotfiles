@@ -23,8 +23,9 @@ export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 
 export LEDGER_FILE="${HOME}"/files/documents/Ledger/hledger.journal
-export PATH="$HOME/.local/share/cargo/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
+export PATH="$PATH:$HOME/.local/share/cargo/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/scripts:"
 
 # theming
 export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
@@ -78,20 +79,54 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-eval "$(starship init zsh)"
+# Detect distro
+if [[ -f /etc/gentoo-release ]]; then
+  DISTRO="gentoo"
+elif [[ -f /etc/arch-release ]]; then
+  DISTRO="arch"
+else
+  DISTRO="unknown"
+fi
 
-autoload -Uz compinit
+# Completions
+autoload -Uz compinit promptinit
 compinit
+promptinit
 
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion::complete:*' use-cache 1
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Gentoo prompt
+if [[ "$DISTRO" == "gentoo" ]]; then
+  prompt gentoo
+fi
+
+# Syntax highlighting
+if [[ "$DISTRO" == "gentoo" ]]; then
+  source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
+elif [[ "$DISTRO" == "arch" ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=cyan,underline'
+
+# Autosuggestions
+if [[ "$DISTRO" == "gentoo" ]]; then
+  source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
+elif [[ "$DISTRO" == "arch" ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 
 #########################
 ### Prompt and colors ###
 #########################
+eval "$(starship init zsh)"
 
 ## Color directories ###
 if [ -f ~/.dir_colors ]; then
@@ -115,3 +150,4 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="${HOME}/.local/share//fnm:$PATH"
   eval "`fnm env`"
 fi
+
