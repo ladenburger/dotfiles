@@ -1,0 +1,16 @@
+# Rose Pine — foam=152 iris=183 gold=222 love=211 pine=67 rose=224 overlay=237 text=189
+
+color listnormal_unread   color152   default
+color listfocus           color189   color237
+color listfocus_unread    color152   color237
+color info                color183   default
+
+highlight article "^(Feed|Link):.*$"           color222 default bold
+highlight article "^(Title|Date|Author):.*$"   color183 default bold
+highlight article "https?://[^ ]+"             color67  default underline
+highlight article "\\[[0-9]+\\]"               color152 default bold
+highlight article "\\[image\\ [0-9]+\\]"       color152 default bold
+
+highlight feedlist "^─.*$"   color237 color237 bold
+highlight feedlist "[║│]"    color183 default
+highlight feedlist "╠═.*"    color183 default

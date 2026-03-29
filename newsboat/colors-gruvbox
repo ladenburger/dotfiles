@@ -1,0 +1,16 @@
+# Gruvbox — aqua=108 yellow=214 fg=223 bg1=237 purple=175 orange=166
+
+color listnormal_unread   color108   default
+color listfocus           color223   color237
+color listfocus_unread    color223   color237
+color info                color223   default
+
+highlight article "^(Feed|Link):.*$"           color214 default bold
+highlight article "^(Title|Date|Author):.*$"   color214 default bold
+highlight article "https?://[^ ]+"             color108 default underline
+highlight article "\\[[0-9]+\\]"               color108 default bold
+highlight article "\\[image\\ [0-9]+\\]"       color108 default bold
+
+highlight feedlist "^─.*$"   color237 color237 bold
+highlight feedlist "[║│]"    color214 default
+highlight feedlist "╠═.*"    color214 default
