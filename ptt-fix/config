@@ -42,4 +42,5 @@ retry 10s
 # listed devices will be listened to if they are capable of sending
 # the requested key.
 # device /dev/input/by-id/*
-device /dev/input/by-id/usb-Logitech_USB_Receiver-event-mouse
+# device /dev/input/by-id/usb-Logitech_USB_Receiver-event-mouse
+device /dev/input/by-id/usb-Logitech_USB_Receiver-if02-event-mouse
