@@ -15,12 +15,11 @@ I'm currently using [Hyprland](https://github.com/hyprwm/Hyprland).
 - **Notifications**: [Dunst](https://github.com/dunst-project/dunst)
   
 # Preview
-## Prompt
-![prompt](https://github.com/user-attachments/assets/a27f6968-959e-4a81-b796-31ab5c1240ab)
 ## Waybar
-![prompt](https://github.com/user-attachments/assets/2249c82f-1bae-417c-8dd9-2e3888ff9914)
+![prev1](https://github.com/user-attachments/assets/324d6cbb-937d-4f63-a25d-0f7bfcd9af50)
+
 ## Nvim
-![nvim](https://github.com/user-attachments/assets/28eacd68-13db-431a-9a98-df31934e327a)
+![prev2](https://github.com/user-attachments/assets/cecd6b47-06d0-4acf-9d5c-22c5bbf19992)
 
 # Useful stuff 
 ## Hyprcursor used
