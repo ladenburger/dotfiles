@@ -1,0 +1,76 @@
+#!/bin/sh
+# switch-theme [gruvbox|rosepine]
+# Symlink/copy to ~/.local/bin/switch-theme to use from PATH
+
+THEME="${1}"
+CFG="$HOME/.config"
+
+if [ -z "$THEME" ]; then
+    CURRENT="$(cat "$CFG/current-theme" 2>/dev/null || echo gruvbox)"
+    THEME="$([ "$CURRENT" = gruvbox ] && echo rosepine || echo gruvbox)"
+fi
+
+if [ "$THEME" != "gruvbox" ] && [ "$THEME" != "rosepine" ]; then
+    echo "Unknown theme: $THEME (choose gruvbox or rosepine)"
+    exit 1
+fi
+
+echo "$THEME" > "$CFG/current-theme"
+
+# Alacritty (auto-reloads on file change)
+cp "$CFG/alacritty/colors-${THEME}.toml" "$CFG/alacritty/colors.toml"
+
+# Waybar
+cp "$CFG/waybar/style-${THEME}.css" "$CFG/waybar/style.css"
+
+# Tmux
+cp "$CFG/tmux/colors-${THEME}.conf" "$CFG/tmux/colors.conf"
+tmux source-file "$CFG/tmux/tmux.conf" 2>/dev/null || true
+
+# Starship (takes effect in new shells)
+cp "$CFG/starship/starship-${THEME}.toml" "$CFG/starship/starship.toml"
+
+# Newsboat (takes effect next launch)
+cp "$CFG/newsboat/colors-${THEME}" "$CFG/newsboat/colors"
+
+# Fuzzel (takes effect next launch)
+cp "$CFG/fuzzel/fuzzel-${THEME}.ini" "$CFG/fuzzel/fuzzel.ini"
+
+# Tofi (takes effect next launch)
+cp "$CFG/tofi/config-${THEME}" "$CFG/tofi/config"
+
+# Btop
+sed -i "s|^color_theme = .*|color_theme = \"$CFG/btop/themes/${THEME}.theme\"|" "$CFG/btop/btop.conf"
+
+# Wallpaper
+swww img "$HOME/files/pictures/wallpapers/${THEME}.jpg" 2>/dev/null || true
+
+# GTK theme (Thunar, Firefox, and other GTK apps)
+if [ "$THEME" = "gruvbox" ]; then
+    GTK_THEME="Gruvbox-Dark"
+else
+    GTK_THEME="rose-pine-gtk"
+fi
+if [ "$THEME" = "gruvbox" ]; then
+    ICON_THEME="Gruvbox-Dark"
+else
+    ICON_THEME="rose-pine"
+fi
+gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME" 2>/dev/null || true
+gsettings set org.gnome.desktop.interface icon-theme "$ICON_THEME" 2>/dev/null || true
+sed -i "s/^gtk-theme-name=.*/gtk-theme-name=$GTK_THEME/" "$HOME/.config/gtk-3.0/settings.ini"
+sed -i "s/^gtk-icon-theme-name=.*/gtk-icon-theme-name=$ICON_THEME/" "$HOME/.config/gtk-3.0/settings.ini"
+
+# Niri focus-ring color
+if [ "$THEME" = "gruvbox" ]; then
+    NIRI_COLOR="#e8c597"
+else
+    NIRI_COLOR="#9ccfd8"
+fi
+sed -i "s/active-color \"#[0-9a-fA-F]*\"/active-color \"$NIRI_COLOR\"/g" "$CFG/niri/config.kdl"
+
+# Reload running apps
+pkill -SIGUSR2 waybar 2>/dev/null || true
+niri msg action reload-config 2>/dev/null || true
+
+echo "Switched to $THEME"
