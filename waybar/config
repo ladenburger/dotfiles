@@ -61,10 +61,10 @@
         "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
     },
     "network": {
-        "format": "󰈀 {ifname}",
-        "format-wifi": "󰤨 {essid} ({signalStrength}%)",
-        "format-ethernet": "󰈀 Wired",
-        "format-disconnected": "󰤭 Disconnected",
+        "format": "{ifname} 󰈀",
+        "format-wifi": "{essid} ({signalStrength}%) 󰤨",
+        "format-ethernet": "Wired 󰈀",
+        "format-disconnected": "Disconnected 󰤭",
         "tooltip-format": "{ifname}\n{ipaddr}/{cidr}"
     },
     "battery": {
@@ -73,10 +73,10 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
+        "format": "{capacity}% {icon}",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% 󰚥",
     },
     "niri/workspaces": {
         "disable-scroll": true,
