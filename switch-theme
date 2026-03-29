@@ -45,6 +45,9 @@ sed -i "s|^color_theme = .*|color_theme = \"$CFG/btop/themes/${THEME}.theme\"|" 
 # Wallpaper
 swww img "$HOME/files/pictures/wallpapers/${THEME}.jpg" 2>/dev/null || true
 
+# Hyprlock
+cp "$CFG/hypr/hyprlock-${THEME}.conf" "$CFG/hypr/hyprlock.conf"
+
 # GTK theme (Thunar, Firefox, and other GTK apps)
 if [ "$THEME" = "gruvbox" ]; then
     GTK_THEME="Gruvbox-Dark"
