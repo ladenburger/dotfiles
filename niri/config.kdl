@@ -420,7 +420,6 @@ binds {
     Mod+Shift+H     { focus-monitor-left; }
     Mod+Shift+J     { focus-monitor-down; }
     Mod+Shift+K     { focus-monitor-up; }
-    Mod+Shift+L     { focus-monitor-right; }
 
     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }

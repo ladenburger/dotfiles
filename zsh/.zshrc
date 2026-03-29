@@ -109,12 +109,6 @@ elif [[ "$DISTRO" == "arch" ]]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=green'
-ZSH_HIGHLIGHT_STYLES[function]='fg=green'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=cyan,underline'
-
 # Autosuggestions
 if [[ "$DISTRO" == "gentoo" ]]; then
   source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh

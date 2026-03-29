@@ -15,10 +15,7 @@ I'm currently using [Hyprland](https://github.com/hyprwm/Hyprland).
 - **Notifications**: [Dunst](https://github.com/dunst-project/dunst)
   
 # Preview
-## Waybar
 ![prev1](https://github.com/user-attachments/assets/324d6cbb-937d-4f63-a25d-0f7bfcd9af50)
-
-## Nvim
 ![prev2](https://github.com/user-attachments/assets/cecd6b47-06d0-4acf-9d5c-22c5bbf19992)
 
 # Useful stuff 
