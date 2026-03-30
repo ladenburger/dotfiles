@@ -30,6 +30,10 @@ tmux source-file "$CFG/tmux/tmux.conf" 2>/dev/null || true
 # Starship (takes effect in new shells)
 cp "$CFG/starship/starship-${THEME}.toml" "$CFG/starship/starship.toml"
 
+# Mako
+cp "$CFG/mako/config-${THEME}" "$CFG/mako/config"
+makoctl reload 2>/dev/null || true
+
 # Newsboat (takes effect next launch)
 cp "$CFG/newsboat/colors-${THEME}" "$CFG/newsboat/colors"
 
@@ -74,6 +78,6 @@ sed -i "s/active-color \"#[0-9a-fA-F]*\"/active-color \"$NIRI_COLOR\"/g" "$CFG/n
 
 # Reload running apps
 pkill -SIGUSR2 waybar 2>/dev/null || true
-niri msg action reload-config 2>/dev/null || true
+niri msg action load-config-file 2>/dev/null || true
 
 echo "Switched to $THEME"
