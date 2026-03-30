@@ -2,28 +2,28 @@ add_newline = true
 
 command_timeout = 1000
 
-format = """[╭╴](#6e6a86)$env_var\
-$all[╰─](#6e6a86)$character"""
+format = """[╭╴](#908caa)$env_var\
+$all[╰─](#908caa)$character"""
 
 [character]
 success_symbol = "[󰘧](bold #f6c177)"
-error_symbol = "[ ](bold #eb6f92)"
+error_symbol = "[󰅙](bold #eb6f92)"
 vimcmd_symbol = ""
 
 [username]
-style_user = "#6e6a86"
+style_user = "bold #c4a7e7"
 style_root = "bold #eb6f92"
 format = "[$user]($style)"
 show_always = true
 
 [hostname]
 ssh_only = false
-format = "[@](#6e6a86)[$hostname](bold #31748f)[ ](#6e6a86)"
+format = "[@](#908caa)[$hostname](bold #9ccfd8)[ ](#908caa)"
 
 [directory]
 truncation_length = 3
 truncation_symbol = "… /"
-style = "#f6c177"
+style = "#ebbcba"
 home_symbol = " ~"
 read_only_style = "197"
 read_only = "  "
