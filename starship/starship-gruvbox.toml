@@ -7,7 +7,7 @@ $all[╰─](#928374)$character"""
 
 [character]
 success_symbol = "[󰘧](bold #dd932c)"
-error_symbol = "[ ](red)"
+error_symbol = "[󰅙](bold #fb4934)"
 vimcmd_symbol = ""
 
 [username]

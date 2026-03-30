@@ -11,3 +11,8 @@ bold_italic.family = "ZedMono Nerd Font"
 [window]
 padding = { x = 8, y = 1 }
 opacity = 0.85
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
