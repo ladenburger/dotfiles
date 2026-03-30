@@ -19,7 +19,6 @@ Primarily using [Niri](https://github.com/YaLTeR/niri), with some [Hyprland](htt
 ![prev1](https://github.com/user-attachments/assets/324d6cbb-937d-4f63-a25d-0f7bfcd9af50)
 ![prev2](https://github.com/user-attachments/assets/cecd6b47-06d0-4acf-9d5c-22c5bbf19992)
 
-# Useful stuff
 ## Fixing PTT on Wayland (for now :))
 [ptt-fix](https://github.com/DeedleFake/ptt-fix) (config in repo)
 
