@@ -345,8 +345,11 @@ binds {
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Shift+L repeat=false hotkey-overlay-title="Lock Screen" { spawn "hyprlock"; }
     Mod+T repeat=false hotkey-overlay-title="Toggle Theme" { spawn "~/.local/bin/switch-theme"; }
-    Mod+B hotkey-overlay-title="Run an Application: fuzzel" { spawn "~/.config/fuzzel/scripts/bookmarks.sh"; }
-    Mod+Shift+E hotkey-overlay-title="Run an Application: fuzzel" { spawn "~/.config/fuzzel/scripts/emoji.sh"; }
+    Mod+B hotkey-overlay-title="Bookmarks" { spawn "~/.config/fuzzel/scripts/bookmarks.sh"; }
+    Mod+Shift+B hotkey-overlay-title="Add Bookmark" { spawn "~/.config/fuzzel/scripts/add-bookmark.sh"; }
+    Mod+S hotkey-overlay-title="Snippets" { spawn "~/.config/fuzzel/scripts/snippets.sh"; }
+    Mod+Shift+S hotkey-overlay-title="Add Snippet" { spawn "~/.config/fuzzel/scripts/add-snippet.sh"; }
+    Mod+Shift+E hotkey-overlay-title="Emoji picker" { spawn "~/.config/fuzzel/scripts/emoji.sh"; }
     Mod+E hotkey-overlay-title="Browse files: thunar" { spawn "thunar"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

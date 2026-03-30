@@ -25,7 +25,6 @@ export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 export LEDGER_FILE="${HOME}"/files/documents/Ledger/hledger.journal
 export PATH="$PATH:$HOME/.local/share/cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/scripts:"
 
 # theming
 export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
