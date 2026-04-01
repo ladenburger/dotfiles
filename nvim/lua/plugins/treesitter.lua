@@ -1,17 +1,8 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
+  'nvim-treesitter/nvim-treesitter',
+  lazy = false,
+  build = ':TSUpdate',
 	config = function()
-		require("nvim-treesitter").setup({
-			ensure_installed = {
-				"c", "lua", "vim", "vimdoc", "query",
-				"elixir", "heex", "javascript", "typescript",
-				"html", "rust",
-			},
-			sync_install = false,
-			auto_install = true,
-			highlight = { enable = true },
-			indent = { enable = true },
-		})
+        require('nvim-treesitter').install({ 'rust', 'javascript', 'zig' }):wait(300000) -- wait max. 5 minutes
 	end,
 }
