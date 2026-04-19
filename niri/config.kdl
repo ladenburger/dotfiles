@@ -207,7 +207,6 @@ layout {
         // draws any.
         //
         // draw-behind-window true
-
         // You can change how shadows look. The values below are in logical
         // pixels and match the CSS box-shadow properties.
 
@@ -254,6 +253,7 @@ cursor {
 spawn-at-startup "waybar"
 spawn-at-startup "hypridle"
 spawn-at-startup "~/.local/share/go/bin/ptt-fix"
+spawn-at-startup "swaync"
 spawn-sh-at-startup "command -v awww-daemon >/dev/null 2>&1 && awww-daemon || swww-daemon"
 // spawn-at-startup "wl-clip-persist" "--clipboard" "both"
 // spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
