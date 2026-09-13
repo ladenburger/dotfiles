@@ -22,12 +22,6 @@ Primarily using [Niri](https://github.com/YaLTeR/niri), with some [Hyprland](htt
 ## Fixing PTT on Wayland (for now :))
 [ptt-fix](https://github.com/DeedleFake/ptt-fix) (config in repo)
 
-## switch-theme
-The `switch-theme` script switches between gruvbox and rosepine. Symlink it to `~/.local/bin`:
-```sh
-ln -s /path/to/dotfiles/switch-theme ~/.local/bin/switch-theme
-```
-
 ## Themes
 - **GTK (Gruvbox)**: [Fausto-Korpsvart/Gruvbox-GTK-Theme](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme) → `~/.local/share/themes/`
 - **GTK (Rosé Pine)**: [rose-pine/gtk](https://github.com/rose-pine/gtk) → `~/.local/share/themes/`
