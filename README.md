@@ -24,11 +24,9 @@ Primarily using [Niri](https://github.com/YaLTeR/niri), with some [Hyprland](htt
 
 ## Themes
 - **GTK (Gruvbox)**: [Fausto-Korpsvart/Gruvbox-GTK-Theme](https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme) → `~/.local/share/themes/`
-- **GTK (Rosé Pine)**: [rose-pine/gtk](https://github.com/rose-pine/gtk) → `~/.local/share/themes/`
 
 ## Icons
 - **Gruvbox Dark**: [jmattheis/gruvbox-dark-icons-gtk](https://github.com/jmattheis/gruvbox-dark-icons-gtk) → `~/.local/share/icons/`
-- **Rosé Pine**: [rose-pine/gtk](https://github.com/rose-pine/gtk) (icons release) → `~/.local/share/icons/`
 
 ## Fonts
 - **ZedMono**: [zed-industries/zed-fonts](https://github.com/zed-industries/zed-fonts) → `~/.local/share/fonts/`
