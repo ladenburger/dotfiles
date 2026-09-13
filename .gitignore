@@ -1,1 +1,5 @@
 nvim/lazy-lock.json
+
+# Rewritten by fcitx5 at runtime
+fcitx5/conf/cached_layouts
+fcitx5/conf/notifications.conf

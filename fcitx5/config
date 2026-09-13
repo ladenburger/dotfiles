@@ -1,0 +1,44 @@
+# quickshell drags Hyprland's xkb layout onto whichever latin engine is 
+# selected, so XWayland apps type in the same layout as everything else 
+# (quickshell/modules/InputState.qml)
+#
+# ALT+SHIFT, bound in hyprland.lua to the `quickshell:imcycle` global shortcut, 
+# so it works everywhere
+
+[Hotkey]
+EnumerateWithTriggerKeys=True
+EnumerateSkipFirst=False
+
+[Hotkey/TriggerKeys]
+
+[Hotkey/AltTriggerKeys]
+
+[Hotkey/EnumerateForwardKeys]
+
+[Hotkey/EnumerateBackwardKeys]
+
+[Hotkey/ActivateKeys]
+
+[Hotkey/DeactivateKeys]
+
+[Hotkey/EnumerateGroupForwardKeys]
+
+[Hotkey/EnumerateGroupBackwardKeys]
+
+[Behavior]
+# Start in latin, so logging in doesn't drop into kana input.
+ActiveByDefault=False
+# Keep the input state per window instead of globally.
+ShareInputState=No
+PreeditEnabledByDefault=True
+# Using quickshell switcher OSD instead so disable here
+ShowInputMethodInformation=False
+ShowInputMethodInformationWhenFocusIn=False
+CompactInputMethodInformation=True
+ShowFirstInputMethodInformation=False
+
+
+# The bar has its own input-method pill (quickshell/modules/Ime.qml),
+# so no trayitem needed
+[Behavior/DisabledAddons]
+0=notificationitem
