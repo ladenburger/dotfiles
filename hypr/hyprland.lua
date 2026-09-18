@@ -29,7 +29,6 @@ hl.on("hyprland.start", function ()
 
     hl.exec_cmd("/usr/bin/gentoo-pipewire-launcher")
     hl.exec_cmd("/usr/libexec/hyprpolkitagent")
-    hl.exec_cmd("nm-applet")
     hl.exec_cmd("ptt-fix")
     hl.exec_cmd("fcitx5 -d -r")
     hl.exec_cmd("awww-daemon")
@@ -332,4 +331,11 @@ for _, rule in ipairs(ankiDialogSizes) do
 
         size = rule[3],
     })
+end
+
+-- Per-machine overrides, if this box has any (hypr/local.lua, untracked).
+do
+    local path = (os.getenv("HOME") or "") .. "/.config/hypr/local.lua"
+    local chunk = loadfile(path)
+    if chunk then chunk() end
 end

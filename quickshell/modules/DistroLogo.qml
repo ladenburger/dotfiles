@@ -6,6 +6,26 @@ Rectangle {
 
     required property Theme theme
 
+    readonly property var glyphs: ({
+        artix:  "\u{f31f}",
+        arch:   "\u{f303}",
+        gentoo: "\u{f08e8}"
+    })
+
+    property string distroId: ""
+    readonly property string distroGlyph: root.glyphs[root.distroId] ?? "\u{f17c}"
+
+    FileView {
+        path: "/etc/os-release"
+        onLoaded: {
+            const os = this.text();
+            const id = /^ID=\"?([^\"\n]+)\"?/m.exec(os);
+            const like = /^ID_LIKE=\"?([^\"\n]+)\"?/m.exec(os);
+            const names = (id ? [id[1]] : []).concat(like ? like[1].split(" ") : []);
+            root.distroId = names.find(n => n in root.glyphs) ?? "";
+        }
+    }
+
     implicitWidth: 40
     implicitHeight: theme.pillHeight
     radius: theme.radiusSmall
@@ -17,7 +37,7 @@ Rectangle {
     Text {
         id: glyph
         anchors.centerIn: parent
-        text: "\u{f08e8}"
+        text: root.distroGlyph
         color: root.theme.distro
         font.family: root.theme.fontFamily
         font.pixelSize: 17

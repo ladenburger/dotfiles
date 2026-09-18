@@ -19,11 +19,6 @@ Item {
 
     property string activeSpecial: ""
     readonly property bool specialShown: activeSpecial.length > 0
-    readonly property string specialShort: {
-        const n = root.activeSpecial;
-        const c = n.indexOf(":") >= 0 ? n.slice(n.indexOf(":") + 1) : n;
-        return c.length > 0 ? c : "special";
-    }
 
     function seedSpecial() {
         const ipc = root.hlMonitor && root.hlMonitor.lastIpcObject
@@ -112,11 +107,7 @@ Item {
         Item {
             id: numbered
             height: root.cell
-            width: root.specialShown ? 0 : numbersRow.implicitWidth
-            opacity: root.specialShown ? 0 : 1
-            clip: true
-            Behavior on width { NumberAnimation { duration: root.theme.durMed; easing.type: Easing.OutCubic } }
-            Behavior on opacity { NumberAnimation { duration: root.theme.durFast } }
+            width: numbersRow.implicitWidth
 
             Rectangle {
                 visible: root.focusedIndex >= 0
@@ -188,29 +179,6 @@ Item {
                         }
                     }
                 }
-            }
-        }
-
-        Rectangle {
-            id: specialPill
-            height: root.cell
-            radius: root.theme.radiusSmall
-            antialiasing: true
-            width: root.specialShown ? specialLabel.implicitWidth + 20 : 0
-            opacity: root.specialShown ? 1 : 0
-            clip: true
-            color: root.theme.pill
-            Behavior on width { NumberAnimation { duration: root.theme.durMed; easing.type: Easing.OutCubic } }
-            Behavior on opacity { NumberAnimation { duration: root.theme.durFast } }
-
-            Text {
-                id: specialLabel
-                anchors.centerIn: parent
-                text: root.specialShort
-                color: root.theme.highlight
-                font.family: root.theme.fontFamily
-                font.pixelSize: 12
-                font.bold: true
             }
         }
     }

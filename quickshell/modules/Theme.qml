@@ -48,6 +48,7 @@ QtObject {
 
     readonly property real barWidthRatio: 0.72
     readonly property int barMinWidth: 640
+    readonly property int barGroupGap: 16
     readonly property int barRadius: 12
     readonly property int radius: 10
     readonly property int radiusSmall: 6

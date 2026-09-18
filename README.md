@@ -8,7 +8,7 @@ Feel free to use and share.
 |---|---|
 | WM | Hyprland — `hypr/` |
 | Bar, notifications, launcher | Quickshell — `quickshell/` |
-| Terminal | Ghostty, Alacritty — `alacritty/` |
+| Terminal | Alacritty — `alacritty/` |
 | Multiplexer | tmux — `tmux/` |
 | Shell, prompt | zsh, Starship — `zsh/`, `starship/` |
 | Editor | Neovim — `nvim/` |

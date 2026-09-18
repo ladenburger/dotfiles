@@ -26,8 +26,26 @@ PanelWindow {
     WlrLayershell.layer: bar.climbing ? WlrLayer.Overlay : WlrLayer.Top
     WlrLayershell.namespace: "quickshell-bar"
 
-    readonly property int islandWidth:
+    readonly property int leftMargin: 10
+    readonly property int rightMargin: 12
+
+    // The island is sized by ratio on a wide screen, but a narrow one cannot
+    // hold the preferred width's worth of content: grow it to whatever the two
+    // groups actually need, up to the full screen minus the frame margins.
+    readonly property int islandBase:
         bar.theme.islandWidth(bar.screen ? bar.screen.width : 1920)
+    readonly property int islandMax:
+        Math.max(bar.theme.barMinWidth, bar.width - 2 * bar.theme.barMargin)
+
+    // Everything but the window title, which is the one item allowed to shrink.
+    readonly property int fixedWidth: Math.ceil(
+        bar.leftMargin + logo.implicitWidth + workspaces.implicitWidth
+        + 2 * leftGroup.spacing + bar.theme.barGroupGap
+        + rightGroup.implicitWidth + bar.rightMargin)
+
+    readonly property int islandWidth: Math.min(
+        bar.islandMax,
+        Math.max(bar.islandBase, bar.fixedWidth + activeWindow.implicitWidth))
 
     mask: Region {
         x: Math.round((bar.width - bar.islandWidth) / 2)
@@ -92,29 +110,35 @@ PanelWindow {
         }
 
         RowLayout {
+            id: leftGroup
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 10
+            anchors.leftMargin: bar.leftMargin
             spacing: 12
 
             DistroLogo {
+                id: logo
                 theme: bar.theme
             }
 
             Workspaces {
+                id: workspaces
                 theme: bar.theme
                 screen: bar.screen
             }
 
             ActiveWindow {
+                id: activeWindow
                 theme: bar.theme
+                maxWidth: Math.max(0, Math.min(460, bar.islandMax - bar.fixedWidth))
             }
         }
 
         RowLayout {
+            id: rightGroup
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            anchors.rightMargin: 12
+            anchors.rightMargin: bar.rightMargin
             spacing: 8
 
             Tray {

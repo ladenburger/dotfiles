@@ -7,10 +7,13 @@ Item {
 
     required property Theme theme
 
+    // The bar shrinks this when the island runs out of room.
+    property int maxWidth: 460
+
     readonly property var toplevel: ToplevelManager.activeToplevel
     readonly property string title: toplevel ? (toplevel.title || toplevel.appId || "") : ""
 
-    implicitWidth: title.length > 0 ? Math.min(row.implicitWidth, 460) : 0
+    implicitWidth: title.length > 0 ? Math.min(row.implicitWidth, root.maxWidth) : 0
     implicitHeight: theme.pillHeight
     clip: true
 
@@ -41,7 +44,7 @@ Item {
             font.pixelSize: 13
             font.bold: true
             elide: Text.ElideRight
-            Layout.maximumWidth: 430
+            Layout.maximumWidth: Math.max(0, root.maxWidth - 30)
 
             opacity: 0
             transform: Translate { id: slide }
