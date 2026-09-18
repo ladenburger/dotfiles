@@ -6,41 +6,36 @@ Feel free to use and share.
 
 | | |
 |---|---|
-| WM | Hyprland — `hypr/hyprland.lua` |
-| Bar / notifications / launcher | Quickshell — `quickshell/` |
-| Terminal | Ghostty, Alacritty |
-| Multiplexer | tmux |
-| Shell / prompt | zsh, Starship |
-| Editor | Neovim |
-| Input | fcitx5 + mozc — `fcitx5/` |
-| PTT on Wayland | [ptt-fix](https://github.com/DeedleFake/ptt-fix) — `ptt-fix/config` |
+| WM | Hyprland — `hypr/` |
+| Bar, notifications, launcher | Quickshell — `quickshell/` |
+| Terminal | Ghostty, Alacritty — `alacritty/` |
+| Multiplexer | tmux — `tmux/` |
+| Shell, prompt | zsh, Starship — `zsh/`, `starship/` |
+| Editor | Neovim — `nvim/` |
+| Input method | fcitx5 + mozc — `fcitx5/` |
+| Feeds | newsboat — `newsboat/` |
+| System info | fastfetch, btop — `fastfetch/`, `btop/` |
+| Push-to-talk | [ptt-fix](https://github.com/DeedleFake/ptt-fix) — `ptt-fix/` |
+| Sentence mining | SubMiner + Anki — `SubMiner/` |
+| Toolkits | `gtk-2.0/`, `gtk-3.0/`, `xfce4/`, `ts3/` |
 
-![prev1](https://github.com/user-attachments/assets/324d6cbb-937d-4f63-a25d-0f7bfcd9af50)
-![prev2](https://github.com/user-attachments/assets/cecd6b47-06d0-4acf-9d5c-22c5bbf19992)
+## Install
 
-## Keyboard
-
-`ALT+SHIFT` cycles one fcitx5 group: `keyboard-us`, `keyboard-de`, `mozc`.
-Hyprland's xkb layout follows the selected engine, and the bar's pill
-(`quickshell/modules/Ime.qml`) clicks, scrolls and right-clicks through the
-same list.
-
-| what | gets its layout from |
-|---|---|
-| text-input-v3 clients | fcitx5's active engine |
-| everything else, XWayland included | Hyprland's xkb group |
-
-## Setup
+Every directory is symlinked into `~/.config`:
 
 ```sh
-echo 'app-i18n/fcitx wayland X'     | sudo tee    /etc/portage/package.use/fcitx5
-echo 'app-i18n/fcitx-qt wayland X'  | sudo tee -a /etc/portage/package.use/fcitx5
-echo 'app-i18n/fcitx-gtk wayland X' | sudo tee -a /etc/portage/package.use/fcitx5
-echo 'app-i18n/mozc fcitx5 -ibus'   | sudo tee -a /etc/portage/package.use/fcitx5
+ln -s ~/files/repos/dotfiles/hypr ~/.config/hypr
+```
+
+zsh needs `ZDOTDIR` set before it reads anything:
+
+```sh
 echo 'export ZDOTDIR="$HOME"/.config/zsh/' | sudo tee -a /etc/zsh/zshenv
 ```
 
-Configs are symlinked into `~/.config`. Screenshots go to
+XDG base dirs, `PATH` and the per-tool env vars that keep programs out of
+`$HOME` live in `zsh/.zshrc`. User directories are in `user-dirs.dirs` —
+everything under `~/files` except downloads; screenshots go to
 `~/files/pictures/screenshots`, passed to hyprshot explicitly by `SUPER+P`.
 
 ## Assets
