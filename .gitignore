@@ -11,3 +11,5 @@ gtk-3.0/colors.css
 hypr/local.lua
 
 fcitx5/profile
+
+zsh/.zprofile
