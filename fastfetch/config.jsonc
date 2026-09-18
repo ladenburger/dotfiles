@@ -66,6 +66,13 @@
             "keyColor": "blue"
         },
         {
+
+            "type": "command",
+            "key": "   Samba",
+            "keyColor": "blue",
+            "text": "df -P -t cifs 2>/dev/null | awk 'function fmt(k,  a,i){split(\"KiB MiB GiB TiB PiB\",a,\" \"); i=1; while(k>=1024&&i<5){k/=1024;i++} return sprintf(\"%.2f %s\",k,a[i])} NR>1 {split($1,h,\"/\"); if(!seen[h[3]\"|\"$2\"|\"$3]++) printf \"%s%s / %s (%s)\", (n++?\", \":\"\"), fmt($3), fmt($2), $5}'"
+        },
+        {
             "type": "cpu",
             "format": "{1}",
             "key": "   CPU",
@@ -79,7 +86,7 @@
         },
         {
             "type": "gpu",
-            "format": "{name}", // See `fastfetch -h gpu-format` for detail
+            "format": "{name}",
             "key": "   GPU",
             "keyColor": "green"
         },

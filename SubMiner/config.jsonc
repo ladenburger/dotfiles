@@ -1,0 +1,615 @@
+{
+  "auto_start_overlay": true,
+  "texthooker": {
+    "launchAtStartup": false,
+    "openBrowser": false
+  },
+  "websocket": {
+    "enabled": false,
+    "port": 6677
+  },
+  "annotationWebsocket": {
+    "enabled": false,
+    "port": 6678
+  },
+  "logging": {
+    "level": "warn",
+    "rotation": 7,
+    "files": {
+      "app": true,
+      "launcher": true,
+      "mpv": false
+    }
+  },
+  "controller": {
+    "enabled": false,
+    "preferredGamepadId": "",
+    "preferredGamepadLabel": "",
+    "smoothScroll": true,
+    "scrollPixelsPerSecond": 900,
+    "horizontalJumpPixels": 160,
+    "stickDeadzone": 0.2,
+    "triggerInputMode": "auto",
+    "triggerDeadzone": 0.5,
+    "repeatDelayMs": 320,
+    "repeatIntervalMs": 120,
+    "buttonIndices": {
+      "select": 6,
+      "buttonSouth": 0,
+      "buttonEast": 1,
+      "buttonWest": 2,
+      "buttonNorth": 3,
+      "leftShoulder": 4,
+      "rightShoulder": 5,
+      "leftStickPress": 9,
+      "rightStickPress": 10,
+      "leftTrigger": 6,
+      "rightTrigger": 7
+    },
+    "bindings": {
+      "toggleLookup": {
+        "kind": "button",
+        "buttonIndex": 0
+      },
+      "closeLookup": {
+        "kind": "button",
+        "buttonIndex": 1
+      },
+      "toggleKeyboardOnlyMode": {
+        "kind": "button",
+        "buttonIndex": 3
+      },
+      "mineCard": {
+        "kind": "button",
+        "buttonIndex": 2
+      },
+      "quitMpv": {
+        "kind": "button",
+        "buttonIndex": 6
+      },
+      "previousAudio": {
+        "kind": "none"
+      },
+      "nextAudio": {
+        "kind": "button",
+        "buttonIndex": 5
+      },
+      "playCurrentAudio": {
+        "kind": "button",
+        "buttonIndex": 4
+      },
+      "toggleMpvPause": {
+        "kind": "button",
+        "buttonIndex": 9
+      },
+      "leftStickHorizontal": {
+        "kind": "axis",
+        "axisIndex": 0,
+        "dpadFallback": "horizontal"
+      },
+      "leftStickVertical": {
+        "kind": "axis",
+        "axisIndex": 1,
+        "dpadFallback": "vertical"
+      },
+      "rightStickHorizontal": {
+        "kind": "axis",
+        "axisIndex": 3,
+        "dpadFallback": "none"
+      },
+      "rightStickVertical": {
+        "kind": "axis",
+        "axisIndex": 4,
+        "dpadFallback": "none"
+      }
+    },
+    "profiles": {}
+  },
+  "startupWarmups": {
+    "lowPowerMode": false,
+    "mecab": true,
+    "yomitanExtension": true,
+    "subtitleDictionaries": true,
+    "jellyfinRemoteSession": false
+  },
+  "updates": {
+    "enabled": true,
+    "checkIntervalHours": 24,
+    "notificationType": "overlay",
+    "channel": "stable"
+  },
+  "notifications": {
+    "overlayPosition": "top-right"
+  },
+  "shortcuts": {
+    "toggleVisibleOverlayGlobal": "Alt+Shift+O",
+    "copySubtitle": "CommandOrControl+C",
+    "copySubtitleMultiple": "CommandOrControl+Shift+C",
+    "updateLastCardFromClipboard": "CommandOrControl+V",
+    "triggerFieldGrouping": "CommandOrControl+G",
+    "triggerSubsync": "Ctrl+Alt+S",
+    "mineSentence": "CommandOrControl+S",
+    "mineSentenceMultiple": "CommandOrControl+Shift+S",
+    "multiCopyTimeoutMs": 3000,
+    "toggleSecondarySub": "CommandOrControl+Shift+V",
+    "markAudioCard": "CommandOrControl+Shift+A",
+    "openCharacterDictionaryManager": "CommandOrControl+D",
+    "openRuntimeOptions": "CommandOrControl+Shift+O",
+    "openJimaku": "Ctrl+Shift+J",
+    "openTsukihime": "Ctrl+Shift+T",
+    "openSessionHelp": "CommandOrControl+Slash",
+    "openControllerSelect": "Alt+C",
+    "openControllerDebug": "Alt+Shift+C",
+    "toggleSubtitleSidebar": "Backslash",
+    "toggleNotificationHistory": "CommandOrControl+N",
+    "appendClipboardVideoToQueue": "CommandOrControl+A"
+  },
+  "keybindings": [
+    {
+      "key": "Space",
+      "command": [
+        "cycle",
+        "pause"
+      ]
+    },
+    {
+      "key": "KeyF",
+      "command": [
+        "cycle",
+        "fullscreen"
+      ]
+    },
+    {
+      "key": "KeyJ",
+      "command": [
+        "cycle",
+        "sid"
+      ]
+    },
+    {
+      "key": "Shift+KeyJ",
+      "command": [
+        "cycle",
+        "secondary-sid"
+      ]
+    },
+    {
+      "key": "ArrowRight",
+      "command": [
+        "seek",
+        5
+      ]
+    },
+    {
+      "key": "ArrowLeft",
+      "command": [
+        "seek",
+        -5
+      ]
+    },
+    {
+      "key": "ArrowUp",
+      "command": [
+        "seek",
+        60
+      ]
+    },
+    {
+      "key": "ArrowDown",
+      "command": [
+        "seek",
+        -60
+      ]
+    },
+    {
+      "key": "Shift+KeyH",
+      "command": [
+        "sub-seek",
+        -1
+      ]
+    },
+    {
+      "key": "Shift+KeyL",
+      "command": [
+        "sub-seek",
+        1
+      ]
+    },
+    {
+      "key": "Ctrl+Shift+ArrowLeft",
+      "command": [
+        "sub-step",
+        -1
+      ]
+    },
+    {
+      "key": "Ctrl+Shift+ArrowRight",
+      "command": [
+        "sub-step",
+        1
+      ]
+    },
+    {
+      "key": "KeyZ",
+      "command": [
+        "add",
+        "sub-delay",
+        -0.1
+      ]
+    },
+    {
+      "key": "Shift+KeyZ",
+      "command": [
+        "add",
+        "sub-delay",
+        0.1
+      ]
+    },
+    {
+      "key": "KeyX",
+      "command": [
+        "add",
+        "sub-delay",
+        0.1
+      ]
+    },
+    {
+      "key": "Ctrl+Alt+KeyC",
+      "command": [
+        "__youtube-picker-open"
+      ]
+    },
+    {
+      "key": "Ctrl+Alt+KeyP",
+      "command": [
+        "__playlist-browser-open"
+      ]
+    },
+    {
+      "key": "Ctrl+Shift+KeyH",
+      "command": [
+        "__replay-subtitle"
+      ]
+    },
+    {
+      "key": "Ctrl+Shift+KeyL",
+      "command": [
+        "__play-next-subtitle"
+      ]
+    },
+    {
+      "key": "KeyQ",
+      "command": [
+        "quit"
+      ]
+    },
+    {
+      "key": "Ctrl+KeyW",
+      "command": [
+        "quit"
+      ]
+    }
+  ],
+  "secondarySub": {
+    "secondarySubLanguages": [],
+    "autoLoadSecondarySub": false,
+    "defaultMode": "hover"
+  },
+  "subsync": {
+    "alass_path": "",
+    "ffsubsync_path": "",
+    "ffmpeg_path": "",
+    "replace": true
+  },
+  "subtitlePosition": {
+    "yPercent": 10
+  },
+  "subtitleStyle": {
+    "primaryDefaultMode": "visible",
+    "css": {
+      "font-family": "Hiragino Sans, M PLUS 1, Source Han Sans JP, Noto Sans CJK JP",
+      "color": "#cad3f5",
+      "background-color": "transparent",
+      "font-size": "35px",
+      "font-weight": "600",
+      "font-style": "normal",
+      "line-height": "1.35",
+      "letter-spacing": "-0.01em",
+      "word-spacing": "0",
+      "font-kerning": "normal",
+      "text-rendering": "geometricPrecision",
+      "text-shadow": "-1px -1px 2px rgba(0,0,0,0.95), 1px -1px 2px rgba(0,0,0,0.95), -1px 1px 2px rgba(0,0,0,0.95), 1px 1px 2px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.5)",
+      "backdrop-filter": "blur(6px)",
+      "--subtitle-hover-token-color": "#f4dbd6",
+      "--subtitle-hover-token-background-color": "transparent"
+    },
+    "enableJlpt": false,
+    "preserveLineBreaks": false,
+    "autoPauseVideoOnHover": true,
+    "autoPauseVideoOnYomitanPopup": true,
+    "primaryVisibleOnYomitanPopup": true,
+    "nameMatchEnabled": false,
+    "nameMatchImagesEnabled": false,
+    "nameMatchColor": "#f5bde6",
+    "nPlusOneColor": "#c6a0f6",
+    "knownWordColor": "#a6da95",
+    "knownWordMaturityColors": {
+      "new": "#ee99a0",
+      "learning": "#b7bdf8",
+      "young": "#91d7e3",
+      "mature": "#a6da95"
+    },
+    "jlptColors": {
+      "N1": "#ed8796",
+      "N2": "#f5a97f",
+      "N3": "#f9e2af",
+      "N4": "#8bd5ca",
+      "N5": "#8aadf4"
+    },
+    "frequencyDictionary": {
+      "enabled": false,
+      "sourcePath": "",
+      "topX": 10000,
+      "mode": "single",
+      "matchMode": "headword",
+      "singleColor": "#f5a97f",
+      "bandedColors": [
+        "#ed8796",
+        "#f5a97f",
+        "#f9e2af",
+        "#8bd5ca",
+        "#8aadf4"
+      ]
+    },
+    "secondary": {
+      "css": {
+        "font-family": "Hiragino Sans, M PLUS 1, Source Han Sans JP, Noto Sans CJK JP",
+        "color": "#cad3f5",
+        "background-color": "transparent",
+        "font-size": "24px",
+        "font-weight": "600",
+        "font-style": "normal",
+        "line-height": "1.35",
+        "letter-spacing": "-0.01em",
+        "word-spacing": "0",
+        "font-kerning": "normal",
+        "text-rendering": "geometricPrecision",
+        "text-shadow": "-1px -1px 2px rgba(0,0,0,0.95), 1px -1px 2px rgba(0,0,0,0.95), -1px 1px 2px rgba(0,0,0,0.95), 1px 1px 2px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.5)",
+        "backdrop-filter": "blur(6px)"
+      }
+    }
+  },
+  "subtitleSidebar": {
+    "enabled": true,
+    "autoOpen": false,
+    "layout": "overlay",
+    "toggleKey": "Backslash",
+    "pauseVideoOnHover": true,
+    "autoScroll": true,
+    "css": {
+      "font-family": "Hiragino Sans, M PLUS 1, Source Han Sans JP, Noto Sans CJK JP",
+      "color": "#cad3f5",
+      "background-color": "rgba(73, 77, 100, 0.9)",
+      "font-size": "16px",
+      "opacity": "0.95",
+      "--subtitle-sidebar-max-width": "420px",
+      "--subtitle-sidebar-timestamp-color": "#a5adcb",
+      "--subtitle-sidebar-active-line-color": "#f5bde6",
+      "--subtitle-sidebar-active-background-color": "rgba(138, 173, 244, 0.22)",
+      "--subtitle-sidebar-hover-background-color": "rgba(54, 58, 79, 0.84)"
+    }
+  },
+  "ai": {
+    "enabled": false,
+    "apiKey": "",
+    "apiKeyCommand": "",
+    "model": "openai/gpt-4o-mini",
+    "baseUrl": "https://openrouter.ai/api",
+    "systemPrompt": "You are a translation engine. Return only the translated text with no explanations.",
+    "requestTimeoutMs": 15000
+  },
+  "ankiConnect": {
+    "enabled": true,
+    "url": "http://127.0.0.1:8765",
+    "pollingRate": 3000,
+    "proxy": {
+      "enabled": true,
+      "host": "127.0.0.1",
+      "port": 8766,
+      "upstreamUrl": "http://127.0.0.1:8765"
+    },
+    "tags": [
+      "SubMiner"
+    ],
+    "deck": "日本語",
+    "fields": {
+      "word": "Expression",
+      "audio": "ExpressionAudio",
+      "image": "Picture",
+      "sentence": "Sentence",
+      "miscInfo": "MiscInfo",
+      "translation": "SelectionText"
+    },
+    "ai": {
+      "enabled": false,
+      "model": "",
+      "systemPrompt": ""
+    },
+    "media": {
+      "generateAudio": true,
+      "generateImage": true,
+      "imageType": "static",
+      "imageFormat": "jpg",
+      "imageQuality": 92,
+      "imageMaxWidth": 0,
+      "imageMaxHeight": 0,
+      "animatedFps": 10,
+      "animatedMaxWidth": 640,
+      "animatedMaxHeight": 0,
+      "animatedCrf": 35,
+      "syncAnimatedImageToWordAudio": true,
+      "normalizeAudio": true,
+      "mirrorMpvVolume": true,
+      "reviewTiming": false,
+      "audioPadding": 0,
+      "fallbackDuration": 3,
+      "maxMediaDuration": 30
+    },
+    "knownWords": {
+      "highlightEnabled": true,
+      "maturityEnabled": false,
+      "matureThresholdDays": 21,
+      "refreshMinutes": 1440,
+      "addMinedWordsImmediately": true,
+      "matchMode": "headword",
+      "decks": {
+        "日本語": [
+          "Expression"
+        ]
+      }
+    },
+    "behavior": {
+      "overwriteAudio": true,
+      "overwriteImage": true,
+      "mediaInsertMode": "append",
+      "highlightWord": true,
+      "notificationType": "overlay",
+      "autoUpdateNewCards": true
+    },
+    "nPlusOne": {
+      "enabled": false,
+      "minSentenceWords": 3
+    },
+    "metadata": {
+      "pattern": "[SubMiner] %f (%t)"
+    },
+    "isLapis": {
+      "enabled": true,
+      "sentenceCardModel": "Lapis"
+    },
+    "isKiku": {
+      "enabled": false,
+      "fieldGrouping": "disabled",
+      "deleteDuplicateInAuto": true
+    },
+    "isSenren": {
+      "enabled": false,
+      "fieldGrouping": "auto",
+      "deleteDuplicateInAuto": true
+    },
+    "lapisKiku": {
+      "wordCardKind": "word-and-sentence"
+    }
+  },
+  "jimaku": {
+    "apiBaseUrl": "https://jimaku.cc",
+    "apiKey": "",
+    "apiKeyCommand": "",
+    "languagePreference": "ja",
+    "maxEntryResults": 10
+  },
+  "tsukihime": {
+    "apiBaseUrl": "https://api.tsukihime.org/v1",
+    "maxSearchResults": 10
+  },
+  "youtube": {
+    "primarySubLanguages": [
+      "ja",
+      "jpn"
+    ],
+    "mediaCache": {
+      "mode": "direct",
+      "maxHeight": 720
+    }
+  },
+  "anilist": {
+    "enabled": false,
+    "accessToken": "",
+    "characterDictionary": {
+      "maxLoaded": 3,
+      "profileScope": "all",
+      "collapsibleSections": {
+        "description": false,
+        "characterInformation": false,
+        "voicedBy": false
+      }
+    }
+  },
+  "yomitan": {
+    "externalProfilePath": ""
+  },
+  "mpv": {
+    "executablePath": "",
+    "launchMode": "normal",
+    "profile": "",
+    "socketPath": "/tmp/subminer-socket",
+    "backend": "auto",
+    "autoStartSubMiner": true,
+    "pauseUntilOverlayReady": true,
+    "subminerBinaryPath": "",
+    "aniskipEnabled": true,
+    "aniskipButtonKey": "TAB"
+  },
+  "jellyfin": {
+    "enabled": true,
+    "serverUrl": "http://jellyfin:8096",
+    "recentServers": [
+      "http://jellyfin:8096"
+    ],
+    "username": "benedikt",
+    "defaultLibraryId": "",
+    "remoteControlEnabled": true,
+    "remoteControlAutoConnect": true,
+    "autoAnnounce": false,
+    "pullPictures": false,
+    "iconCacheDir": "/tmp/subminer-jellyfin-icons",
+    "directPlayPreferred": true,
+    "directPlayContainers": [
+      "mkv",
+      "mp4",
+      "webm",
+      "mov",
+      "flac",
+      "mp3",
+      "aac"
+    ],
+    "transcodeVideoCodec": "h264"
+  },
+  "discordPresence": {
+    "enabled": true,
+    "presenceStyle": "default",
+    "updateIntervalMs": 3000,
+    "debounceMs": 750
+  },
+  "immersionTracking": {
+    "enabled": true,
+    "dbPath": "",
+    "batchSize": 25,
+    "flushIntervalMs": 500,
+    "queueCap": 1000,
+    "payloadCapBytes": 256,
+    "maintenanceIntervalMs": 86400000,
+    "retentionMode": "preset",
+    "retentionPreset": "balanced",
+    "retention": {
+      "eventsDays": 0,
+      "telemetryDays": 0,
+      "sessionsDays": 0,
+      "dailyRollupsDays": 0,
+      "monthlyRollupsDays": 0,
+      "vacuumIntervalDays": 0
+    },
+    "lifetimeSummaries": {
+      "global": true,
+      "anime": true,
+      "media": true
+    }
+  },
+  "stats": {
+    "toggleKey": "Backquote",
+    "markWatchedKey": "KeyW",
+    "serverPort": 6969,
+    "autoStartServer": true,
+    "autoOpenBrowser": false
+  }
+}

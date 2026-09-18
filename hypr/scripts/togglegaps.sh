@@ -1,31 +1,49 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# thx livakivi <3
+state="${XDG_RUNTIME_DIR:-/tmp}/hypr-gaps"
 
-STATE_FILE="/tmp/hypr_gap_state"
-WS=$(hyprctl activeworkspace -j | jq '.id')
+off_border="rgba(504945ff)"
 
-# Check if current workspace has gaps on
-STATE=$(grep -w "$WS" "$STATE_FILE" 2>/dev/null | awk '{print $2}')
+get() { hyprctl getoption -j "$1" | jq -r '.css // .int // .gradient'; }
 
-if [[ "$STATE" == "1" ]]; then
-    # Turn gaps off and radius to 0
-    hyprctl keyword general:gaps_in 0
-    hyprctl keyword general:gaps_out 0
-    hyprctl keyword decoration:rounding 0
-    sed -i "/^$WS /d" "$STATE_FILE"
-    echo "$WS 0" >> "$STATE_FILE"
+tbl() {
+    set -- $1
+    printf '{ top = %s, right = %s, bottom = %s, left = %s }' "$1" "$2" "$3" "$4"
+}
+
+rgba() {
+    c=${1%% *}
+    case $c in *[!0-9a-fA-F]*) return 1 ;; esac
+    [ ${#c} -eq 8 ] || return 1
+    printf 'rgba(%s%s)' "$(printf %s "$c" | cut -c3-8)" "$(printf %s "$c" | cut -c1-2)"
+}
+
+apply() {
+    hyprctl eval "hl.config({
+        general = {
+            gaps_in  = $(tbl "$1"),
+            gaps_out = $(tbl "$2"),
+            col = { active_border = \"$4\" },
+        },
+        decoration = { rounding = $3 },
+    })" >/dev/null
+}
+
+if [ "$(get general:gaps_out)" = "0 0 0 0" ]; then
+    if { read -r gaps_in && read -r gaps_out && read -r rounding && read -r border; } 2>/dev/null < "$state" &&
+       [ -n "$gaps_in" ] && [ -n "$gaps_out" ] && [ -n "$rounding" ] && [ -n "$border" ]; then
+        apply "$gaps_in" "$gaps_out" "$rounding" "$border"
+    else
+        hyprctl reload >/dev/null
+    fi
+    rm -f "$state"
 else
-    # get borderconfig
-    config="$HOME/.config/hypr/hyprland.conf"
-    gaps_in=$(awk -F'= *' '/gaps_in/ {print $2}' "$config")
-    gaps_out=$(awk -F'= *' '/gaps_out/ {print $2}' "$config")
-    rounding=$(awk -F'= *' '/rounding/ {print $2}' "$config")
-
-    # Turn on gaps with values from hyprconfig
-    hyprctl keyword general:gaps_in $gaps_in
-    hyprctl keyword general:gaps_out $gaps_out
-    hyprctl keyword decoration:rounding $rounding
-    sed -i "/^$WS /d" "$STATE_FILE"
-    echo "$WS 1" >> "$STATE_FILE"
+    if border=$(rgba "$(get general:col.active_border)"); then
+        printf '%s\n%s\n%s\n%s\n' \
+            "$(get general:gaps_in)" "$(get general:gaps_out)" \
+            "$(get decoration:rounding)" "$border" > "$state"
+    else
+        rm -f "$state"
+    fi
+    apply "0 0 0 0" "0 0 0 0" 0 "$off_border"
 fi

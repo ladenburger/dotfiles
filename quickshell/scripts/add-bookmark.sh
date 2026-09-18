@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 bookmark_file=~/files/documents/obsidian-vault/Bookmarks.md
+dmenu="$HOME/.config/quickshell/scripts/qs-dmenu"
 
-label=$(echo "" | fuzzel --dmenu --prompt "Bookmark name: ")
+label=$(: | "$dmenu" "Bookmark name")
 [ -z "$label" ] && exit
 
-url=$(echo "" | fuzzel --dmenu --prompt "URL: ")
+url=$(: | "$dmenu" "URL")
 [ -z "$url" ] && exit
 
 echo "$label:: $url" >> "$bookmark_file"

@@ -1,5 +1,3 @@
-# Gruvbox — aqua=108 yellow=214 fg=223 bg1=237 purple=175 orange=166
-
 color listnormal_unread   color108   default
 color listfocus           color223   color237
 color listfocus_unread    color223   color237

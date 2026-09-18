@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+prompt="${1-}"
+dir="${XDG_RUNTIME_DIR:-/tmp}"
+in="$(mktemp "$dir/qs-dmenu.XXXXXX")"
+out="$(mktemp -u "$dir/qs-dmenu.XXXXXX.fifo")"
+mkfifo "$out"
+trap 'rm -f "$in" "$out"' EXIT
+
+cat >"$in"
+
+qs ipc call launcher dmenu "$prompt" "$in" "$out" >/dev/null
+
+result="$(cat "$out")"
+[ -n "$result" ] || exit 1
+printf '%s\n' "$result"

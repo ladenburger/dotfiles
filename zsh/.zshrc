@@ -1,4 +1,3 @@
-# $HOME cleanup
 export XDG_DATA_HOME="${HOME}"/.local/share/
 export XDG_CONFIG_HOME=${HOME}/.config/
 export XDG_STATE_HOME=${HOME}/.local/state/
@@ -17,25 +16,24 @@ export SCREENRC="${XDG_CONFIG_HOME}/screen/screenrc"
 export SCREENDIR="${XDG_CACHE_HOME}/screen/"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
 export W3M_DIR="$XDG_STATE_HOME/w3m"
-export PASSWORD_STORE_DIR=~/.config/password-store
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
+export BUN_INSTALL="${XDG_DATA_HOME}"/bun
+export BUN_INSTALL_CACHE_DIR="${XDG_CACHE_HOME}"/bun
 
 export EDITOR=/usr/bin/nvim
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 
-export LEDGER_FILE="${HOME}"/files/documents/Ledger/hledger.journal
 export PATH="$PATH:$HOME/.local/share/cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$BUN_INSTALL/bin"
 
-# theming
 export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
 
-# sh history
 HISTFILE=~/.local/share/zsh/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
 
 key[Home]="${terminfo[khome]}"
@@ -51,7 +49,6 @@ key[PageUp]="${terminfo[kpp]}"
 key[PageDown]="${terminfo[knp]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
 
-# setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
 [[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
 [[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
@@ -68,8 +65,6 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	autoload -Uz add-zle-hook-widget
 	function zle_application_mode_start { echoti smkx }
@@ -78,7 +73,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# Detect distro
 if [[ -f /etc/gentoo-release ]]; then
   DISTRO="gentoo"
 elif [[ -f /etc/arch-release ]]; then
@@ -87,7 +81,6 @@ else
   DISTRO="unknown"
 fi
 
-# Completions
 autoload -Uz compinit promptinit
 compinit
 promptinit
@@ -96,32 +89,24 @@ zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion::complete:*' use-cache 1
 
-# Gentoo prompt
 if [[ "$DISTRO" == "gentoo" ]]; then
   prompt gentoo
 fi
 
-# Syntax highlighting
 if [[ "$DISTRO" == "gentoo" ]]; then
   source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 elif [[ "$DISTRO" == "arch" ]]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-# Autosuggestions
 if [[ "$DISTRO" == "gentoo" ]]; then
   source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
 elif [[ "$DISTRO" == "arch" ]]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-
-#########################
-### Prompt and colors ###
-#########################
 eval "$(starship init zsh)"
 
-## Color directories ###
 if [ -f ~/.dir_colors ]; then
     eval "$(dircolors -b ~/.dir_colors)"
 elif [ -f /etc/dir_colors ]; then
@@ -131,16 +116,17 @@ else
 fi
 alias ls='ls --color=auto'
 
-# Load aliases
 shell_aliases_file=$ZDOTDIR/sh_aliases
 if [ -f $shell_aliases_file ]; then
     . $shell_aliases_file
 fi
 
-# fnm
 FNM_PATH="${HOME}/.local/share//fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="${HOME}/.local/share//fnm:$PATH"
   eval "`fnm env`"
 fi
 
+export PATH="$HOME"/.opencode/bin:$PATH
+
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"

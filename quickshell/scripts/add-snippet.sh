@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 snippet_file=~/files/documents/obsidian-vault/Snippets.md
+dmenu="$HOME/.config/quickshell/scripts/qs-dmenu"
 
-label=$(echo "" | fuzzel --dmenu --prompt "Snippet name: ")
+label=$(: | "$dmenu" "Snippet name")
 [ -z "$label" ] && exit
 
-text=$(echo "" | fuzzel --dmenu --prompt "Text: ")
+text=$(: | "$dmenu" "Text")
 [ -z "$text" ] && exit
 
 echo "$label: $text" >> "$snippet_file"

@@ -29,9 +29,6 @@ vim.keymap.set("n", "<leader>y", '"+y', { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Y", '"+yy', { noremap = true, silent = true })
 
--------------------------------------------------------------------
--- Insert helpers (dates / timestamps)
--------------------------------------------------------------------
 local Insert = {}
 
 function Insert.put(text, no_space)
@@ -51,7 +48,6 @@ function Insert.timestamp(no_space)
 	Insert.put(os.date("%Y-%m-%d %H:%M"), no_space)
 end
 
--- Keymaps for inserting date/time
 vim.keymap.set("n", "<leader>td", function()
 	Insert.date(false)
 end, { desc = "Insert date (with space)" })

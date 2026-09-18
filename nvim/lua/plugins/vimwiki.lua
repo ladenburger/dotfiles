@@ -4,9 +4,7 @@ return {
 	init = function()
 		vim.g.vimwiki_list = {
 			{
-				-- I prefer using VimWiki instead of Obsidian, but due
-				-- VimWiki also supporting markdown and links we can use
-				-- them in both editors
+
 				path = "~/files/documents/obsidian-vault/",
 				syntax = "markdown",
 				ext = ".md",

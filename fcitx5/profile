@@ -1,7 +1,7 @@
 [Groups/0]
 Name=Default
 Default Layout=us
-DefaultIM=mozc
+DefaultIM=keyboard-de
 
 [Groups/0/Items/0]
 Name=keyboard-us
@@ -17,4 +17,3 @@ Layout=
 
 [GroupOrder]
 0=Default
-
