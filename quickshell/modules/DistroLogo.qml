@@ -19,8 +19,8 @@ Rectangle {
         path: "/etc/os-release"
         onLoaded: {
             const os = this.text();
-            const id = /^ID=\"?([^\"\n]+)\"?/m.exec(os);
-            const like = /^ID_LIKE=\"?([^\"\n]+)\"?/m.exec(os);
+            const id = /^ID=["']?([^"'\n]+)["']?/m.exec(os);
+            const like = /^ID_LIKE=["']?([^"'\n]+)["']?/m.exec(os);
             const names = (id ? [id[1]] : []).concat(like ? like[1].split(" ") : []);
             root.distroId = names.find(n => n in root.glyphs) ?? "";
         }
