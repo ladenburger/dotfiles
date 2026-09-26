@@ -33,6 +33,13 @@ zsh needs `ZDOTDIR` set before it reads anything:
 echo 'export ZDOTDIR="$HOME"/.config/zsh/' | sudo tee -a /etc/zsh/zshenv
 ```
 
+Brightness keys call `brightnessctl`, whose udev rule makes the backlight
+writable by the `video` group — log out and back in after joining it:
+
+```sh
+sudo usermod -aG video "$USER"
+```
+
 XDG base dirs, `PATH` and the per-tool env vars that keep programs out of
 `$HOME` live in `zsh/.zshrc`. User directories are in `user-dirs.dirs` —
 everything under `~/files` except downloads; screenshots go to
