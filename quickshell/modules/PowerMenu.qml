@@ -10,12 +10,11 @@ PanelWindow {
     readonly property Theme theme: Theme {}
 
     readonly property var actions: [
-        { key: "l", glyph: "\u{f033e}", label: "Lock",      cmd: ["loginctl", "lock-session"] },
-        { key: "e", glyph: "\u{f0343}", label: "Logout",    cmd: ["sh", "-c", "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"] },
-        { key: "u", glyph: "\u{f04b2}", label: "Suspend",   cmd: ["systemctl", "suspend"] },
-        { key: "h", glyph: "\u{f0717}", label: "Hibernate", cmd: ["systemctl", "hibernate"] },
-        { key: "r", glyph: "\u{f0709}", label: "Reboot",    cmd: ["systemctl", "reboot"] },
-        { key: "s", glyph: "\u{f0425}", label: "Shutdown",  cmd: ["systemctl", "poweroff"] }
+        { key: "l", glyph: "\u{f033e}", label: "Lock",     cmd: ["loginctl", "lock-session"] },
+        { key: "e", glyph: "\u{f0343}", label: "Logout",   cmd: ["sh", "-c", "~/.config/hypr/scripts/logout.sh"] },
+        { key: "u", glyph: "\u{f04b2}", label: "Suspend",  cmd: ["loginctl", "suspend"] },
+        { key: "r", glyph: "\u{f0709}", label: "Reboot",   cmd: ["loginctl", "reboot"] },
+        { key: "s", glyph: "\u{f0425}", label: "Shutdown", cmd: ["loginctl", "poweroff"] }
     ]
 
     property bool shown: false

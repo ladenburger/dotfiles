@@ -169,7 +169,7 @@ hl.config({
     input = {
         kb_layout  = "us,de",
 
-        kb_options = "",
+        kb_options = "ctrl:nocaps",
         kb_variant = "",
         kb_model   = "",
         kb_rules   = "",
@@ -201,7 +201,7 @@ hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + CTRL + Return", hl.dsp.exec_cmd(terminal .. " -e zsh"))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/hypr/scripts/logout.sh"))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + Escape", hl.dsp.global("quickshell:powermenu"))
 hl.bind(mainMod .. " + Tab", hl.dsp.global("quickshell:alttab"))
@@ -218,7 +218,6 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("~/.config/hypr/scripts/togglegaps.sh"))
 
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprshot -m region -o ~/files/pictures/screenshots"))
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
 hl.bind("ALT + Shift_L",  hl.dsp.global("quickshell:imcycle"), { locked = true })
 hl.bind("ALT + Shift_R",  hl.dsp.global("quickshell:imcycle"), { locked = true })
