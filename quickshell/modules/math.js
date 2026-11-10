@@ -9,18 +9,32 @@ const CONST_TEX = { pi: "\\pi", tau: "\\tau", e: "e", phi: "\\varphi" };
 const FNS = {
     sqrt: 1, cbrt: 1, root: 2, abs: 1, floor: 1, ceil: 1, round: 1,
     sin: 1, cos: 1, tan: 1, asin: 1, acos: 1, atan: 1,
-    sinh: 1, cosh: 1, tanh: 1,
-    ln: 1, log: 1, lg: 1, log2: 1, exp: 1, min: -1, max: -1
+    sec: 1, csc: 1, cot: 1,
+    sinh: 1, cosh: 1, tanh: 1, asinh: 1, acosh: 1, atanh: 1,
+    ln: 1, log: 1, lg: 1, log2: 1, exp: 1, min: -1, max: -1,
+    sign: 1, trunc: 1, gcd: -1, lcm: -1, ncr: 2, npr: 2, mod: 2,
+    hypot: -1, sum: -1, mean: -1, deg: 1, rad: 1
 };
 const ALIASES = {
-    arcsin: "asin", arccos: "acos", arctan: "atan", log10: "log", sqr: "sqrt"
+    arcsin: "asin", arccos: "acos", arctan: "atan", log10: "log", sqr: "sqrt",
+    arsinh: "asinh", arcosh: "acosh", artanh: "atanh",
+    arcsinh: "asinh", arccosh: "acosh", arctanh: "atanh",
+    cosec: "csc", cotan: "cot", sgn: "sign",
+    binom: "ncr", choose: "ncr", comb: "ncr", perm: "npr",
+    avg: "mean", hcf: "gcd", gcf: "gcd"
 };
 
-const FN_GLYPH = { asin: "arcsin", acos: "arccos", atan: "arctan" };
+const FN_GLYPH = {
+    asin: "arcsin", acos: "arccos", atan: "arctan",
+    asinh: "arsinh", acosh: "arcosh", atanh: "artanh", sign: "sgn", npr: "P"
+};
 const FN_TEX = {
     sin: "\\sin", cos: "\\cos", tan: "\\tan", asin: "\\arcsin", acos: "\\arccos",
     atan: "\\arctan", sinh: "\\sinh", cosh: "\\cosh", tanh: "\\tanh", ln: "\\ln",
-    exp: "\\exp", min: "\\min", max: "\\max", lg: "\\lg"
+    exp: "\\exp", min: "\\min", max: "\\max", lg: "\\lg",
+    sec: "\\sec", csc: "\\csc", cot: "\\cot", gcd: "\\gcd",
+    asinh: "\\operatorname{arsinh}", acosh: "\\operatorname{arcosh}",
+    atanh: "\\operatorname{artanh}", sign: "\\operatorname{sgn}", npr: "P"
 };
 
 const COMMANDS = {
@@ -30,7 +44,7 @@ const COMMANDS = {
     phi: ["name", "phi"], varphi: ["name", "phi"], vert: ["bar"], lvert: ["bar"],
     rvert: ["bar"], left: ["skip"], right: ["skip"], quad: ["skip"], qquad: ["skip"],
     lfloor: ["name", "floor"], lceil: ["name", "ceil"], rfloor: ["skip"], rceil: ["skip"],
-    circ: ["deg"]
+    circ: ["deg"], binom: ["name", "ncr"], tbinom: ["name", "ncr"], dbinom: ["name", "ncr"]
 };
 for (const f of Object.keys(FNS))
     COMMANDS[f] = COMMANDS[f] || ["name", f];
@@ -64,7 +78,8 @@ function tokenize(src) {
         } else if ((m = /^(?:log2|log10|[A-Za-z]+)/.exec(rest))) {
             const w = m[0].toLowerCase();
             i += m[0].length;
-            if (w === "mod")
+            // "mod" is the infix operator unless it's called like mod(a, b).
+            if (w === "mod" && !/^\s*\(/.test(src.slice(i)))
                 out.push({ k: "op", v: "mod" });
             else if (CONSTS[w] !== undefined || FNS[w] !== undefined)
                 out.push({ k: "name", v: w });
@@ -112,7 +127,7 @@ const CLOSER = { "(": ")", "[": "]", "{": "}" };
 function parse(tokens) {
     let pos = 0;
     let absDepth = 0;
-    const st = { incomplete: false, hadDiv: false };
+    const st = { incomplete: false, hadDiv: false, hadDecimal: false };
 
     const peek = () => tokens[pos];
     const isOp = (v) => { const t = tokens[pos]; return t && t.k === "op" && t.v === v; };
@@ -237,9 +252,20 @@ function parse(tokens) {
         if (!t)
             return hole();
         switch (t.k) {
-        case "num":
+        case "num": {
             pos++;
+            if (/[.eE]/.test(t.s))
+                st.hadDecimal = true;
+            const isInt = (x) => !!x && x.k === "num" && /^\d+$/.test(x.s);
+            const n1 = tokens[pos], n2 = tokens[pos + 1], n3 = tokens[pos + 2];
+            // "3 1/2" (two numbers separated by a space)  →  3 + 1/2
+            if (isInt(t) && isInt(n1) && n2 && n2.k === "op" && n2.v === "/" && isInt(n3)) {
+                pos += 3;
+                st.hadDiv = true;
+                return { k: "mixed", w: t.s, n: n1.s, d: n3.s };
+            }
             return { k: "num", s: t.s };
+        }
         case "frac": {
             pos++;
             st.hadDiv = true;
@@ -291,6 +317,10 @@ function parse(tokens) {
             }
             return { k: "fn", name: index ? "root" : "sqrt", args: index ? [texArg(), index] : [texArg()], paren: false };
         }
+        if (name === "ncr" && t.tex && peek() && peek().k === "open" && peek().v === "{") {
+            const n = texArg();
+            return { k: "fn", name: "ncr", args: [n, texArg()], paren: true };
+        }
         if (name === "log" && peek() && peek().k === "under") {
             pos++;
             sub = texArg();
@@ -304,6 +334,8 @@ function parse(tokens) {
                 args.push(expr());
             }
             close("(");
+            if (name === "mean")
+                st.hadDiv = true;
             return checkArity({ k: "fn", name: name, args: args, paren: true, base: sub });
         }
         if (o && o.k === "open" && o.v === "{" && t.tex) {
@@ -321,7 +353,7 @@ function parse(tokens) {
     const tree = expr();
     if (pos < tokens.length)
         throw { msg: "unexpected token" };
-    return { tree: tree, incomplete: st.incomplete, hadDiv: st.hadDiv };
+    return { tree: tree, incomplete: st.incomplete, hadDiv: st.hadDiv, hadDecimal: st.hadDecimal };
 }
 
 function gcd(a, b) {
@@ -403,6 +435,10 @@ function evaluate(node) {
         return V(parseFloat(node.s), qFromDecimal(node.s));
     case "const":
         return V(CONSTS[node.name], null);
+    case "mixed": {
+        const w = Number(node.w), n = Number(node.n), d = Number(node.d);
+        return V(w + n / d, qadd(Q(w), Q(n, d)));
+    }
     case "group":
         return evaluate(node.a);
     case "neg": {
@@ -450,11 +486,7 @@ function evaluate(node) {
         case "-": return V(a.v - b.v, qadd(a.q, qneg(b.q)));
         case "*": case "x": case "imp": return V(a.v * b.v, qmul(a.q, b.q));
         case "/": case "div": return V(a.v / b.v, qmul(a.q, qinv(b.q)));
-        case "mod": {
-            const q = a.q && b.q && b.q.n !== 0
-                ? qadd(a.q, qneg(qmul(b.q, qfloor(qmul(a.q, qinv(b.q)))))) : null;
-            return V(a.v - b.v * Math.floor(a.v / b.v), q);
-        }
+        case "mod": return modV(a, b);
         }
         break;
     }
@@ -499,12 +531,75 @@ function evaluate(node) {
         case "sinh": return V(Math.sinh(a.v), zeroAtZero(a));
         case "cosh": return V(Math.cosh(a.v), a.q && a.q.n === 0 ? Q(1) : null);
         case "tanh": return V(Math.tanh(a.v), zeroAtZero(a));
+        case "sec": return V(1 / Math.cos(a.v), a.q && a.q.n === 0 ? Q(1) : null);
+        case "csc": return V(1 / Math.sin(a.v), null);
+        case "cot": return V(1 / Math.tan(a.v), null);
+        case "asinh": return V(Math.asinh(a.v), zeroAtZero(a));
+        case "acosh": return V(Math.acosh(a.v), qint(a.q) && a.q.n === 1 ? Q(0) : null);
+        case "atanh": return V(Math.atanh(a.v), zeroAtZero(a));
+        case "sign": return V(Math.sign(a.v), a.q ? Q(Math.sign(a.q.n)) : null);
+        case "trunc": return V(Math.trunc(a.v), a.q ? (a.q.n < 0 ? qneg(qfloor(qneg(a.q))) : qfloor(a.q)) : null);
+        case "deg": return V(a.v * 180 / Math.PI, zeroAtZero(a));
+        case "rad": return V(a.v * Math.PI / 180, zeroAtZero(a));
+        case "mod": return modV(a, args[1]);
+        case "gcd":
+        case "lcm": {
+            if (!args.every(x => qint(x.q)))
+                return V(NaN, null);
+            let r = Math.abs(args[0].q.n);
+            for (const x of args.slice(1)) {
+                const n = Math.abs(x.q.n);
+                r = node.name === "gcd" ? gcd(r, n) : (r === 0 || n === 0 ? 0 : r / gcd(r, n) * n);
+            }
+            return V(r, Q(r));
+        }
+        case "ncr":
+        case "npr": {
+            const n = args[0], k = args[1];
+            if (!qint(n.q) || !qint(k.q) || n.q.n < 0 || k.q.n < 0)
+                return V(NaN, null);
+            if (k.q.n > n.q.n)
+                return V(0, Q(0));
+            const N = n.q.n;
+            const K = node.name === "ncr" ? Math.min(k.q.n, N - k.q.n) : k.q.n;
+            let v = 1, q = Q(1);
+            for (let i = 0; i < K && v < Infinity; i++) {
+                v = node.name === "ncr" ? v * (N - i) / (i + 1) : v * (N - i);
+                q = qmul(q, node.name === "ncr" ? Q(N - i, i + 1) : Q(N - i));
+            }
+            return V(q ? v : Math.round(v), q);
+        }
+        case "hypot": {
+            let sq = Q(0);
+            for (const x of args)
+                sq = qadd(sq, qmul(x.q, x.q));
+            return V(Math.hypot.apply(null, args.map(x => x.v)), qroot(sq, 2));
+        }
+        case "sum":
+        case "mean": {
+            let v = 0, q = Q(0);
+            for (const x of args) {
+                v += x.v;
+                q = qadd(q, x.q);
+            }
+            if (node.name === "mean") {
+                v /= args.length;
+                q = qmul(q, Q(1, args.length));
+            }
+            return V(v, q);
+        }
         }
     }
     }
     throw { msg: "cannot evaluate " + node.k };
 }
 function zeroAtZero(a) { return a.q && a.q.n === 0 ? Q(0) : null; }
+function modV(a, b) {
+    const V = (v, q) => ({ v: q ? q.n / q.d : v, q: q || null });
+    const q = a.q && b.q && b.q.n !== 0
+        ? qadd(a.q, qneg(qmul(b.q, qfloor(qmul(a.q, qinv(b.q)))))) : null;
+    return V(a.v - b.v * Math.floor(a.v / b.v), q);
+}
 
 function exactLog(q, b) {
     if (!q || q.n <= 0)
@@ -560,7 +655,10 @@ function bare(node) {
     return node.k === "group" && (node.fence === "(" || node.fence === "{") ? node.a : node;
 }
 function needsParens(node) {
-    return node.k === "neg" || node.k === "bin" || (node.k === "fn" && !node.paren);
+    return node.k === "neg" || node.k === "bin" || node.k === "mixed" || (node.k === "fn" && !node.paren);
+}
+function mixedDisp(w, n, d) {
+    return row([sym(w), { t: "frac", num: sym(n), den: sym(d) }]);
 }
 
 const OP_GLYPH = { "+": "+", "-": "−", "*": "·", x: "×", div: "÷" };
@@ -571,6 +669,7 @@ function display(node) {
     case "hole": return { t: "hole" };
     case "num": return sym(node.s);
     case "const": return sym(CONST_GLYPH[node.name], "ord", true);
+    case "mixed": return mixedDisp(node.w, node.n, node.d);
     case "group":
         return node.fence === "{" ? display(node.a) : fence(node.fence, CLOSER[node.fence], display(node.a));
     case "abs": return fence("|", "|", display(node.a));
@@ -609,6 +708,7 @@ function displayFn(node) {
     case "abs": return fence("|", "|", display(bare(args[0])));
     case "floor": return fence("⌊", "⌋", display(bare(args[0])));
     case "ceil": return fence("⌈", "⌉", display(bare(args[0])));
+    case "ncr": return fence("(", ")", { t: "frac", num: display(bare(args[0])), den: display(bare(args[1])), nobar: true });
     }
     let head;
     if (node.name === "log")
@@ -633,6 +733,7 @@ function tex(node) {
     case "hole": return "\\square";
     case "num": return node.s;
     case "const": return CONST_TEX[node.name];
+    case "mixed": return node.w + "\\frac{" + node.n + "}{" + node.d + "}";
     case "group":
         return node.fence === "{" ? "{" + tex(node.a) + "}" : delim(node.fence, CLOSER[node.fence], node.a);
     case "abs": return delim("|", "|", node.a);
@@ -658,6 +759,7 @@ function tex(node) {
         case "abs": return delim("|", "|", bare(a[0]));
         case "floor": return delim("\\lfloor", "\\rfloor", bare(a[0]));
         case "ceil": return delim("\\lceil", "\\rceil", bare(a[0]));
+        case "ncr": return "\\binom{" + tex(bare(a[0])) + "}{" + tex(bare(a[1])) + "}";
         }
         const head = node.name === "log" ? "\\log_{" + (node.base ? tex(bare(node.base)) : "10") + "}"
                    : node.name === "log2" ? "\\log_{2}"
@@ -673,7 +775,7 @@ function texWrap(node, cond) { return cond ? delim("(", ")", node) : tex(node); 
 function isTall(node) {
     if (!node || typeof node !== "object")
         return false;
-    if ((node.k === "bin" && node.op === "/") || (node.k === "fn" && /sqrt|cbrt|root/.test(node.name)))
+    if ((node.k === "bin" && node.op === "/") || node.k === "mixed" || (node.k === "fn" && /sqrt|cbrt|root|ncr/.test(node.name)))
         return true;
     return ["a", "b", "base"].some(key => isTall(node[key])) || (node.args || []).some(isTall);
 }
@@ -690,7 +792,8 @@ function groupDigits(s) {
     return s.length < 5 ? s : s.replace(/\B(?=(\d{3})+$)/g, " ");
 }
 
-function formatValue(val, hadDiv, tree) {
+function formatValue(val, parsed, tree) {
+    const hadDiv = parsed.hadDiv;
     const parts = [];
     let copy;
     const v = val.v;
@@ -701,10 +804,22 @@ function formatValue(val, hadDiv, tree) {
         return { parts: [{ rel: "=", disp: sym(s), tex: (v < 0 ? "-" : "") + "\\infty" }], copy: v < 0 ? "-Infinity" : "Infinity" };
     }
     const q = val.q;
-    if (q && q.d !== 1 && hadDiv && q.d <= 1e6 && !isPlainFraction(tree, q)) {
+    // Show the exact fraction when the input had division, or had decimals
+    // that land on a simple fraction (0.125 + 0.5 = 5/8).
+    const showFrac = q && q.d !== 1 && ((hadDiv && q.d <= 1e6) || (parsed.hadDecimal && q.d <= 1000));
+    if (showFrac) {
         const n = Math.abs(q.n);
-        const f = { t: "frac", num: sym(String(n)), den: sym(String(q.d)) };
-        parts.push({ rel: "=", disp: q.n < 0 ? row([sym("−", "open"), f]) : f, tex: (q.n < 0 ? "-" : "") + "\\frac{" + n + "}{" + q.d + "}" });
+        const sign = q.n < 0 ? "−" : "", texSign = q.n < 0 ? "-" : "";
+        if (!isPlainFraction(tree, q)) {
+            const f = { t: "frac", num: sym(String(n)), den: sym(String(q.d)) };
+            parts.push({ rel: "=", disp: sign ? row([sym(sign, "open"), f]) : f, tex: texSign + "\\frac{" + n + "}{" + q.d + "}" });
+        }
+        // Improper fraction → also show it as a mixed number (7/2 = 3½).
+        if (n > q.d && tree.k !== "mixed" && !(tree.k === "neg" && tree.a.k === "mixed")) {
+            const w = String(Math.floor(n / q.d)), r = String(n % q.d), d = String(q.d);
+            const m = mixedDisp(w, r, d);
+            parts.push({ rel: "=", disp: sign ? row([sym(sign, "open"), m]) : m, tex: texSign + w + "\\frac{" + r + "}{" + d + "}" });
+        }
     }
     const ex = q && Math.abs(q.n / q.d) < 1e15 ? expand(q) : null;
     if (ex) {
@@ -782,7 +897,7 @@ function analyse(query) {
     } catch (e) {
         return null;
     }
-    const res = formatValue(val, parsed.hadDiv, tree);
+    const res = formatValue(val, parsed, tree);
     const items = [exprDisp];
     let texS = exprTex;
     for (const p of res.parts) {
@@ -873,7 +988,7 @@ function lay(node, env, s, depth) {
         const denBase = barY + rule / 2 + gap + den.a;
         const ops = shift(num.ops, (w - num.w) / 2, numBase)
             .concat(shift(den.ops, (w - den.w) / 2, denBase))
-            .concat([{ op: "fill", x: 0.04 * s, y: barY - rule / 2, w: w - 0.08 * s, h: rule, role: env.role }]);
+            .concat(node.nobar ? [] : [{ op: "fill", x: 0.04 * s, y: barY - rule / 2, w: w - 0.08 * s, h: rule, role: env.role }]);
         return { w: w, a: -numBase + num.a, d: denBase + den.d, cls: "inner", ops: ops };
     }
     case "script": {

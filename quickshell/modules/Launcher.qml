@@ -17,10 +17,94 @@ PanelWindow {
 
     property int selectedIndex: 0
 
+    // Calculator cheat sheet, toggled by the ƒ(x) button or F1.
+    property bool showMathHelp: false
+    readonly property var mathHelp: [
+        { title: "Basics", rows: [
+            ["+  -  *  /", "arithmetic", "2*(3+4)/7"],
+            ["^  **", "power", "2^10"],
+            ["!", "factorial", "6!"],
+            ["mod  %", "remainder", "17 mod 5"],
+            ["|x|  abs(x)", "absolute value", "|-3.5|"],
+            ["2pi  3(4+1)", "implicit multiplication", "2pi"]
+        ] },
+        { title: "Fractions", rows: [
+            ["1/3 + 1/4", "exact fraction result", "1/3 + 1/4"],
+            ["3 1/2", "mixed number (space between)", "3 1/2 + 1/4"],
+            ["0.125 + 0.5", "decimals shown as fractions", "0.125 + 0.5"],
+            ["\\frac{a}{b}", "LaTeX fraction", "\\frac{22}{7}"]
+        ] },
+        { title: "Roots & powers", rows: [
+            ["sqrt(x)", "square root", "sqrt(72)"],
+            ["cbrt(x)", "cube root", "cbrt(27)"],
+            ["root(x, n)", "n-th root", "root(32, 5)"],
+            ["exp(x)  e^x", "exponential", "exp(1)"],
+            ["hypot(a, b, …)", "sqrt(a^2 + b^2 + …)", "hypot(3, 4)"]
+        ] },
+        { title: "Logarithms", rows: [
+            ["ln(x)", "natural log", "ln(e^3)"],
+            ["log(x)  lg(x)", "base 10", "log(1000)"],
+            ["log2(x)", "base 2", "log2(1024)"],
+            ["log_b x", "any base", "log_3 81"]
+        ] },
+        { title: "Trigonometry (radians)", rows: [
+            ["sin cos tan", "basic trig", "sin(pi/6)"],
+            ["sec csc cot", "reciprocal trig", "sec(pi/3)"],
+            ["asin acos atan", "inverse (arcsin… too)", "atan(1)"],
+            ["sinh cosh tanh", "hyperbolic", "cosh(0)"],
+            ["asinh acosh atanh", "inverse hyperbolic", "asinh(1)"],
+            ["deg(x)  rad(x)", "radians→degrees / degrees→radians", "sin(rad(30))"]
+        ] },
+        { title: "Integers & combinatorics", rows: [
+            ["gcd(a, b, …)", "greatest common divisor", "gcd(84, 36)"],
+            ["lcm(a, b, …)", "least common multiple", "lcm(4, 6, 10)"],
+            ["nCr(n, k)  binom", "combinations", "nCr(49, 6)"],
+            ["nPr(n, k)", "permutations", "nPr(10, 3)"],
+            ["mod(a, b)", "remainder (function form)", "mod(-7, 3)"]
+        ] },
+        { title: "Rounding & lists", rows: [
+            ["floor ceil round", "round down / up / nearest", "floor(7/2)"],
+            ["trunc(x)", "drop the decimals", "trunc(-2.7)"],
+            ["sgn(x)", "sign: −1, 0 or 1", "sgn(-4)"],
+            ["min max", "smallest / largest", "max(3, 9, 4)"],
+            ["sum mean avg", "total / average", "mean(2, 3, 7)"]
+        ] },
+        { title: "Constants", rows: [
+            ["pi", "3.14159…", "=pi"],
+            ["tau", "2·pi", "=tau"],
+            ["e", "2.71828…", "=e"],
+            ["phi", "golden ratio", "=phi"]
+        ] },
+        { title: "Results", rows: [
+            ["Enter", "copy the result", ""],
+            ["Shift+Enter", "copy as LaTeX", ""],
+            ["=…", "force calculation", "=pi"]
+        ] }
+    ]
+    function insertExample(ex) {
+        if (!ex)
+            return;
+        input.text = ex;
+        input.cursorPosition = ex.length;
+        input.forceActiveFocus();
+    }
+
     readonly property var calc: win.mode === "apps" ? Calc.analyse(win.query) : null
     readonly property bool calcReady: !!win.calc && win.calc.hasValue
 
     onQueryChanged: win.selectedIndex = win.calcReady ? -1 : 0
+
+    // Hover only selects when the pointer really moves. Qt also sends hover
+    // events when results change or scroll under a stationary cursor, and
+    // those would override the "first entry" reset after typing.
+    property point _lastPointer: Qt.point(-1, -1)
+    function hoverSelect(item, mouse, index) {
+        const p = item.mapToItem(null, mouse.x, mouse.y);
+        if (p.x === win._lastPointer.x && p.y === win._lastPointer.y)
+            return;
+        win._lastPointer = p;
+        win.selectedIndex = index;
+    }
     onCalcReadyChanged: win.selectedIndex = win.calcReady ? -1 : 0
 
     property var dmenuItems: []
@@ -265,10 +349,14 @@ PanelWindow {
         interval: win.theme.durMed + 60
     }
     onShownChanged: {
-        if (!shown)
+        if (!shown) {
             closeHold.restart();
-        else
+        } else {
+            // Help never carries over between openings. Cleared on open, not
+            // on close, so the panel doesn't jump in height mid-slide.
+            win.showMathHelp = false;
             Qt.callLater(input.forceActiveFocus);
+        }
     }
 
     IpcHandler {
@@ -375,8 +463,8 @@ PanelWindow {
                         anchors {
                             left: mag.right
                             leftMargin: 10
-                            right: parent.right
-                            rightMargin: 14
+                            right: helpBtn.visible ? helpBtn.left : parent.right
+                            rightMargin: helpBtn.visible ? 8 : 14
                             verticalCenter: parent.verticalCenter
                         }
                         color: win.theme.text
@@ -390,6 +478,22 @@ PanelWindow {
 
                         Keys.onPressed: event => {
                             switch (event.key) {
+                            case Qt.Key_Shift:
+                            case Qt.Key_Control:
+                            case Qt.Key_Alt:
+                            case Qt.Key_Meta:
+                            case Qt.Key_Super_L:
+                            case Qt.Key_Super_R:
+                                break;
+                            default:
+                                edgeGlow.flash();
+                            }
+                            switch (event.key) {
+                            case Qt.Key_F1:
+                                if (win.mode === "apps")
+                                    win.showMathHelp = !win.showMathHelp;
+                                event.accepted = true;
+                                break;
                             case Qt.Key_Escape:
                                 win.cancel();
                                 event.accepted = true;
@@ -441,6 +545,45 @@ PanelWindow {
                         font.pixelSize: 14
                         elide: Text.ElideRight
                     }
+
+                    Rectangle {
+                        id: helpBtn
+                        anchors {
+                            right: parent.right
+                            rightMargin: 9
+                            verticalCenter: parent.verticalCenter
+                        }
+                        width: 30
+                        height: 30
+                        radius: win.theme.radiusSmall
+                        antialiasing: true
+                        visible: win.mode === "apps"
+                        color: win.showMathHelp || helpMouse.containsMouse ? win.theme.pillHover : "transparent"
+
+                        Behavior on color {
+                            ColorAnimation { duration: win.theme.durFast }
+                        }
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: "\u{f0871}"
+                            color: win.showMathHelp ? win.theme.highlight
+                                 : helpMouse.containsMouse ? win.theme.text : win.theme.subtext
+                            font.family: win.theme.fontFamily
+                            font.pixelSize: 17
+                        }
+
+                        MouseArea {
+                            id: helpMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                win.showMathHelp = !win.showMathHelp;
+                                input.forceActiveFocus();
+                            }
+                        }
+                    }
                 }
 
                 Rectangle {
@@ -448,12 +591,124 @@ PanelWindow {
                     height: 1
                     color: win.theme.border
                     opacity: 0.4
-                    visible: list.visible || calcCard.visible
+                    visible: list.visible || calcCard.visible || mathHelp.visible
                 }
 
                 Item {
                     width: parent.width
-                    height: list.visible || calcCard.visible ? 6 : 0
+                    height: list.visible || calcCard.visible || mathHelp.visible ? 6 : 0
+                }
+
+                Flickable {
+                    id: mathHelp
+                    width: parent.width
+                    visible: win.showMathHelp && win.mode === "apps"
+                    // Leave room for the calc card / results when something is typed.
+                    height: visible ? Math.min(helpCol.implicitHeight, win.query.trim().length ? 200 : 440) : 0
+                    contentHeight: helpCol.implicitHeight
+                    clip: true
+                    boundsBehavior: Flickable.StopAtBounds
+
+                    Column {
+                        id: helpCol
+                        width: parent.width
+                        bottomPadding: 6
+
+                        Repeater {
+                            model: win.mathHelp
+
+                            Column {
+                                id: helpSection
+                                required property var modelData
+                                width: helpCol.width
+
+                                Text {
+                                    leftPadding: 20
+                                    topPadding: 8
+                                    bottomPadding: 4
+                                    text: helpSection.modelData.title
+                                    color: win.theme.highlight
+                                    font.family: win.theme.fontFamily
+                                    font.pixelSize: 11
+                                    font.bold: true
+                                }
+
+                                Repeater {
+                                    model: helpSection.modelData.rows
+
+                                    Rectangle {
+                                        id: helpRow
+                                        required property var modelData
+                                        readonly property bool clickable: helpRow.modelData[2].length > 0
+
+                                        x: 6
+                                        width: helpSection.width - 12
+                                        height: 26
+                                        radius: win.theme.radiusSmall
+                                        antialiasing: true
+                                        color: rowMouse.containsMouse && helpRow.clickable ? win.theme.pillHover : "transparent"
+
+                                        Text {
+                                            id: helpSyntax
+                                            anchors {
+                                                left: parent.left
+                                                leftMargin: 14
+                                                verticalCenter: parent.verticalCenter
+                                            }
+                                            width: 170
+                                            text: helpRow.modelData[0]
+                                            color: win.theme.text
+                                            font.family: win.theme.fontFamily
+                                            font.pixelSize: 12
+                                            elide: Text.ElideRight
+                                        }
+
+                                        Text {
+                                            anchors {
+                                                left: helpSyntax.right
+                                                leftMargin: 10
+                                                right: helpEx.left
+                                                rightMargin: 10
+                                                verticalCenter: parent.verticalCenter
+                                            }
+                                            text: helpRow.modelData[1]
+                                            color: win.theme.subtext
+                                            font.family: win.theme.fontFamily
+                                            font.pixelSize: 12
+                                            elide: Text.ElideRight
+                                        }
+
+                                        Text {
+                                            id: helpEx
+                                            anchors {
+                                                right: parent.right
+                                                rightMargin: 14
+                                                verticalCenter: parent.verticalCenter
+                                            }
+                                            text: helpRow.modelData[2]
+                                            color: rowMouse.containsMouse ? win.theme.highlight : win.theme.muted
+                                            font.family: win.theme.fontFamily
+                                            font.pixelSize: 11
+                                        }
+
+                                        MouseArea {
+                                            id: rowMouse
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            enabled: helpRow.clickable
+                                            cursorShape: Qt.PointingHandCursor
+                                            onClicked: win.insertExample(helpRow.modelData[2])
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Item {
+                    width: parent.width
+                    height: mathHelp.visible && (list.visible || calcCard.visible) ? 6 : 0
                 }
 
                 Item {
@@ -506,7 +761,7 @@ PanelWindow {
                         enabled: win.calcReady
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onPositionChanged: win.selectedIndex = -1
+                        onPositionChanged: mouse => win.hoverSelect(calcCard, mouse, -1)
                         onClicked: mouse => {
                             win.selectedIndex = -1;
                             win.accept(mouse.modifiers & Qt.ShiftModifier);
@@ -589,7 +844,7 @@ PanelWindow {
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
-                            onPositionChanged: win.selectedIndex = rowDel.index
+                            onPositionChanged: mouse => win.hoverSelect(rowDel, mouse, rowDel.index)
                             onClicked: {
                                 win.selectedIndex = rowDel.index;
                                 win.accept();
@@ -613,7 +868,7 @@ PanelWindow {
 
                 Item {
                     width: parent.width
-                    height: list.visible || calcCard.visible ? 6 : 0
+                    height: list.visible || calcCard.visible || mathHelp.visible ? 6 : 0
                 }
             }
         }
@@ -642,6 +897,99 @@ PanelWindow {
         Fillet {
             corner: 0
             x: panel.x + panel.width
+        }
+
+        // Accent outline tracing the launcher's silhouette: down the left wedge
+        // curve, the left side, the rounded bottom, the right side and up the
+        // right wedge curve. It's transparent at the bar's edge and fades in
+        // along the wedges, so the bar → launcher join has no hard line.
+        // Keystrokes make it flash.
+        Canvas {
+            id: edgeGlow
+
+            readonly property real lineWidth: 2
+            readonly property real restOpacity: 0.3
+            // Same radius the Fillet wedges use.
+            readonly property int joinR: Math.max(0, Math.min(win.theme.joinRadius, panel.height + panel.y))
+
+            x: panel.x - edgeGlow.joinR
+            y: 0
+            width: panel.width + 2 * edgeGlow.joinR
+            height: Math.max(0, panel.y + panel.height)
+            visible: panel.width > 0 && edgeGlow.height > 0
+            opacity: edgeGlow.restOpacity
+
+            function flash() {
+                flashAnim.restart();
+            }
+
+            SequentialAnimation {
+                id: flashAnim
+                NumberAnimation {
+                    target: edgeGlow
+                    property: "opacity"
+                    to: 1
+                    duration: 50
+                    easing.type: Easing.OutQuad
+                }
+                NumberAnimation {
+                    target: edgeGlow
+                    property: "opacity"
+                    to: edgeGlow.restOpacity
+                    duration: 520
+                    easing.type: Easing.OutCubic
+                }
+            }
+
+            onWidthChanged: requestPaint()
+            onHeightChanged: requestPaint()
+            onJoinRChanged: requestPaint()
+
+            onPaint: {
+                const ctx = getContext("2d");
+                ctx.reset();
+                const lw = edgeGlow.lineWidth, J = edgeGlow.joinR;
+                const w = width, h = height;
+                if (w - 2 * J < 2 * lw || h < 2 * lw)
+                    return;
+
+                const c = win.theme.highlight;
+                const rgba = a => "rgba(" + Math.round(c.r * 255) + "," + Math.round(c.g * 255) + ","
+                                 + Math.round(c.b * 255) + "," + a + ")";
+                // Transparent at the bar edge, fully lit just below the wedges.
+                const g = ctx.createLinearGradient(0, 0, 0, h);
+                g.addColorStop(0, rgba(0));
+                g.addColorStop(Math.min(0.9, (J + 16) / h), rgba(1));
+                g.addColorStop(1, rgba(1));
+
+                // Panel sides sit lw/2 inside the panel; the wedge arcs are
+                // concentric with the wedges, so they meet the sides smoothly.
+                const xl = J + lw / 2, xr = w - J - lw / 2, yb = h - lw / 2;
+                const R = J + lw / 2;
+                const br = Math.max(0, Math.min(win.theme.radius - lw / 2, (xr - xl) / 2, yb - J));
+
+                ctx.beginPath();
+                if (J > 0) {
+                    ctx.moveTo(0, J - R);
+                    ctx.arc(0, J, R, -Math.PI / 2, 0, false);
+                } else {
+                    ctx.moveTo(xl, 0);
+                }
+                ctx.lineTo(xl, yb - br);
+                ctx.arcTo(xl, yb, xl + br, yb, br);
+                ctx.lineTo(xr - br, yb);
+                ctx.arcTo(xr, yb, xr, yb - br, br);
+                if (J > 0) {
+                    ctx.lineTo(xr, J);
+                    ctx.arc(w, J, R, Math.PI, Math.PI * 1.5, false);
+                } else {
+                    ctx.lineTo(xr, 0);
+                }
+                ctx.strokeStyle = g;
+                ctx.lineWidth = lw;
+                ctx.lineJoin = "round";
+                ctx.stroke();
+            }
         }
     }
 }
