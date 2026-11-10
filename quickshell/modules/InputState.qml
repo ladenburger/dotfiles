@@ -141,9 +141,12 @@ Singleton {
         root.selectIm(root.imForLayout(root.layout));
     }
 
+    // Always applied, even when root.layout already matches: root.layout only
+    // caches hyprland's events and can go stale, and skipping on a stale value
+    // leaves the keyboard on the wrong layout with no event left to fix it.
     function syncLayoutToIm() {
         const code = root.layoutForIm(root.im);
-        if (code.length === 0 || code === root.layout) return;
+        if (code.length === 0) return;
         const i = root.layouts.indexOf(code);
         if (i < 0) return;
         layoutSetter.running = false;
@@ -190,10 +193,20 @@ Singleton {
         target: Hyprland
         function onRawEvent(event) {
             if (event.name !== "activelayout") return;
-            const parts = event.data.split(",");
-            if (parts.length < 2 || root.isVirtualKeyboard(parts[0])) return;
-            root.setLayout(root.shortenLayout(parts[parts.length - 1]));
+            // The event names whichever keyboard changed, including ones that
+            // just appeared (they start on layout 0, "us"). Read the main
+            // keyboard instead of trusting it.
+            if (root.isVirtualKeyboard(event.data.split(",")[0])) return;
+            root.probeLayout();
         }
+    }
+
+    property bool seeded: false
+    property bool probeAgain: false
+
+    function probeLayout() {
+        if (layoutSeed.running) root.probeAgain = true;
+        else layoutSeed.running = true;
     }
 
     Process {
@@ -214,14 +227,24 @@ Singleton {
         id: layoutSeed
         running: true
         command: ["hyprctl", "devices", "-j"]
+        onRunningChanged: if (!running && root.probeAgain) {
+            root.probeAgain = false;
+            running = true;
+        }
         stdout: StdioCollector {
             onStreamFinished: {
                 try {
                     const kb = (JSON.parse(this.text).keyboards ?? [])
                         .filter(k => !root.isVirtualKeyboard(k.name));
                     const main = kb.find(k => k.main) ?? kb[0];
-                    if (main && main.active_keymap)
-                        root.layout = root.shortenLayout(main.active_keymap);
+                    if (!main || !main.active_keymap) return;
+                    const code = root.shortenLayout(main.active_keymap);
+                    if (root.seeded) {
+                        root.setLayout(code);
+                    } else {
+                        root.layout = code;
+                        root.seeded = true;
+                    }
                 } catch (e) {}
             }
         }
