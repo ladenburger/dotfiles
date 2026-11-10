@@ -92,8 +92,8 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 3,
-            passes    = 1,
+            size      = 8,
+            passes    = 3,
             vibrancy  = 0.1696,
         },
     },
@@ -284,6 +284,32 @@ hl.window_rule({
 
     no_focus = true,
 })
+
+-- Translucent, blurred apps. SUPER+O flips them all back to fully opaque.
+-- Add an entry to make another app translucent; `opacity` is optional.
+local translucentApps = {
+    { name = "firefox", class = "^firefox.*" },
+    { name = "rledger", class = "^rledger$" },
+}
+local defaultOpacity = "0.85 0.85"
+
+local translucent = true
+local translucentRules = {}
+for _, app in ipairs(translucentApps) do
+    table.insert(translucentRules, hl.window_rule({
+        name  = app.name .. "-translucent",
+        match = { class = app.class },
+
+        opacity = app.opacity or defaultOpacity,
+    }))
+end
+
+hl.bind("SUPER + O", function ()
+    translucent = not translucent
+    for _, rule in ipairs(translucentRules) do
+        rule:set_enabled(translucent)
+    end
+end)
 
 hl.window_rule({
     name  = "move-hyprland-run",
